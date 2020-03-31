@@ -2,33 +2,35 @@
 
 namespace App\Form;
 
-use App\Entity\Musiciens;
+use App\Entity\Salles;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class MusiciensType extends AbstractType
+class SallesType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nom_grp')
-            ->add('mail', EmailType::class)
+            ->add('nom_salle')
             ->add('nom_ref')
-            ->add('prenom_ref')
+            ->add('ville')
+            ->add('adresse')
+            ->add('mail', EmailType::class)
             ->add('tel', TelType::class)
-            ->add('nb_membres')
-            ->add('style')
-            ->add('presentation_grp')
+            ->add('capacite')
+            ->add('categorie')
+            ->add('backline')
+            ->add('description')
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Musiciens::class,
+            'data_class' => Salles::class,
         ]);
     }
 }
