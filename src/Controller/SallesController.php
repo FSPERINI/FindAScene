@@ -1,5 +1,8 @@
 <?php
 
+// Formulaire d'ajout d'une salle
+
+
 namespace App\Controller;
 
 use App\Entity\Salles;
