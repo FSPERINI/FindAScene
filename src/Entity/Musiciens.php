@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\MusiciensRepository")
@@ -17,32 +19,71 @@ class Musiciens
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string")
+     * * @Assert\Length(
+     *      min = 1,
+     *      max = 25,
+     *      minMessage = "Le nom de votre groupe doit comporter au moins {{ limit }} lettre",
+     *      maxMessage = "Le nom de votre groupe doit comporter au maximum {{ limit }} lettres",
+     *      
+     * )
      */
     private $nom_grp;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string")
+     * * @Assert\Length(
+     *      min = 1,
+     *      max = 50,
+     *      minMessage = "Votre mail doit comporter au moins {{ limit }} lettre",
+     *      maxMessage = "Votre mail doit comporter au maximum {{ limit }} lettres",
+     *      
+     * )
      */
     private $mail;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string")
+     * @Assert\Length(
+     *      min = 1,
+     *      max = 15,
+     *      minMessage = "Votre nom doit comporter au moins {{ limit }} lettre",
+     *      maxMessage = "Votre nom doit comporter au maximum {{ limit }} lettres",
+     *      
+     * )
      */
     private $nom_ref;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string")
+     * @Assert\Length(
+     *      min = 1,
+     *      max = 15,
+     *      minMessage = "Votre prénom doit comporter au moins {{ limit }} lettre",
+     *      maxMessage = "Votre prénom doit comporter au maximum {{ limit }} lettres",
+     *      
+     * )
      */
     private $prenom_ref;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\Length(
+     *      min = 10,
+     *      max = 10,
+     *      minMessage = "Votre n° doit comporter 10 numéro",
+     *      maxMessage = "Votre n° doit comporter 10 numéro"
+     * )
      */
     private $tel;
 
     /**
      * @ORM\Column(type="integer")
+     * 
+     * @Assert\Range(
+     *      min = 1,
+     *      max = 12
+     *)
      */
     private $nb_membres;
 
@@ -53,8 +94,20 @@ class Musiciens
 
     /**
      * @ORM\Column(type="text")
+     * 
+     * @Assert\Length(
+     *      min = 50,
+     *      max = 150,
+     *      minMessage = "Votre description doit comporter au moins {{ limit }} caractères",
+     *      maxMessage = "Votre description ne doit pas dépasser {{ limit }} caractères"
+     *)
      */
     private $presentation_grp;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $slug;
 
     public function getId(): ?int
     {
@@ -153,6 +206,18 @@ class Musiciens
     public function setPresentationGrp(string $presentation_grp): self
     {
         $this->presentation_grp = $presentation_grp;
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
 
         return $this;
     }
