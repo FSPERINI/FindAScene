@@ -2,8 +2,10 @@
 //Espace Administrateur du site
 
 
-namespace App\Controller\Admin;
+namespace App\Controller;
 
+use App\Entity\Salles;
+use App\Form\SallesType;
 use App\Repository\SallesRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -30,6 +32,19 @@ class AdminController extends AbstractController
     public function index()
     {
        $salles = $this->repository->findAll();
-       return $this->render ("backend/index.html.twig", compact ('salles'));
+       return $this->render ("backoff/index.html.twig", compact ('salles'));
+    }
+
+    /**
+     * @Route("/admin/{id}, name="admin.edit")
+     * @param Salles $salles
+     */
+    public function edit(Salles $salles)
+    {
+        $form = $this->createForm(SallesType::class, $salles);
+        return $this->render('backoff/edit.html.twig', [
+        'salle' => $salles,
+        'form' => $form->createView()
+        ]);
     }
 }
