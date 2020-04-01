@@ -104,6 +104,11 @@ class Musiciens
      */
     private $presentation_grp;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $slug;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -201,6 +206,18 @@ class Musiciens
     public function setPresentationGrp(string $presentation_grp): self
     {
         $this->presentation_grp = $presentation_grp;
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
 
         return $this;
     }
