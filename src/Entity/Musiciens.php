@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -72,7 +73,7 @@ class Musiciens
 
         return $this;
     }
-
+    
     public function getMail(): ?string
     {
         return $this->mail;
