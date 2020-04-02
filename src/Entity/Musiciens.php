@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -125,7 +126,7 @@ class Musiciens
 
         return $this;
     }
-
+    
     public function getMail(): ?string
     {
         return $this->mail;
