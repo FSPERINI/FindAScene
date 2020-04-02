@@ -25,14 +25,14 @@ class AdminController extends AbstractController
     private $musiciensrepository;
 
     public function __construct(SallesRepository $sallesrepository, MusiciensRepository $musiciensrepository)
-    {
+    {        
         $this->sallesrepository = $sallesrepository;
         $this->musiciensrepository = $musiciensrepository;
     }
 
 
      /**
-     * @Route("/admin", name="admin.index")
+     * @Route("/admin", name="admin_index")
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function index()
@@ -43,7 +43,7 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/admin/{id}", name="admin.edit", methods="GET|POST")
+     * @Route("/admin/{id}", name="admin_edit", methods="GET|POST")
      * @param Salles $salles
      * @param Musiciens $musiciens
      */
@@ -60,7 +60,7 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route ("/admin/{id}", name="admin.delete", methods="delete")
+     * @Route ("/admin/{id}", name="admindelete", methods="delete")
      *  @return \Symfony\Component\HttpFoundation\Response
      */
     public function delete(Salles $salles, Request $request)
