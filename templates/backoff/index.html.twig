@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'Godmode' %}
+
+{% block body %} 
+<h1>Gérer les inscriptions</h1>
+{% for message in app.flashes('success') %}
+        <div class="alert success">
+            {{ message }}
+        </div>
+        {% endfor %}
+
+<!--======================= Tableau édition/suppression des users salles =================-->
+    <h2> Salles de Concert</h2>
+    <div class="container mt-4">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Utilisateur</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for salle in salles %}
+                <tr>
+                    <td>{{ salle.NomSalle }}</td>
+                    <td>
+                        <a href="{{ path ('admin.edit', {id: salle.id}) }}" class="btn btn-secondary">Editer</a>
+                        <form method="post" action="{{ path ('admin.delete', {id: salle.id}) }}" style="display: inline-block" onsubmit="return confirm('Action irrémédiable')">
+                            <input type="hidden" name="_method" value="delete">
+                            <input type="hidden" name="_token" value="{{csrf_token('delete' ~ salle.id)}}">
+                            <button class="btn btn-danger">Supprimer</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>            
+    </div>
+    
+<!--======================= Tableau édition/suppression des users musiciens =================-->
+<h2> Musiciens - groupes</h2>
+<div class="container mt-4">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Utilisateur</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for musicien in musiciens %}
+            <tr>
+                <td>{{ musicien.NomGrp }}</td>
+                <td>
+                    <a href="{{ path ('admin.edit', {id: musicien.id}) }}" class="btn btn-secondary">Editer</a>
+                    <form method="post" action="{{ path ('admin.delete', {id: musicien.id}) }}" style="display: inline-block" onsubmit="return confirm('Action irrémédiable')">
+                        <input type="hidden" name="_method" value="delete">
+                        <input type="hidden" name="_token" value="{{csrf_token('delete' ~ musicien.id)}}">
+                        <button class="btn btn-danger">Supprimer</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>            
+</div>
+    
+{% endblock %}
