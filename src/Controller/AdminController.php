@@ -71,6 +71,6 @@ class AdminController extends AbstractController
             $this->addFlash('success', 'Votre annonce a bien été supprimée');
         }
         
-        return $this->redirectToRoute('admin.index');
+        return $this->redirectToRoute('/backoff/index.html.twig');
     }
 }
