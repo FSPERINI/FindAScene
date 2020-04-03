@@ -52,4 +52,25 @@ class SallesController extends AbstractController
             'salle' => $salles,
         ]);
      }
+
+    /**
+     * @Route("/salles/profil/edit/{slug}", name="edit_salles")
+     */
+
+    public function edit(Request $request, Salles $salles, SluggerInterface $slugger)
+    {
+
+       $form = $this->createForm(SallesType::class, $salles);
+       $form->handleRequest($request);
+
+       if ($form->isSubmitted() && $form->isValid())
+       {
+           $salles->setSlug($slugger->slug($salles->getNomSalle())->lower());
+           $this->getDoctrine()->getManager()->flush();
+       }
+
+       return $this->render('salles/edit.html.twig', [
+           'form' => $form->createView(),
+       ]);
+    }
 }
