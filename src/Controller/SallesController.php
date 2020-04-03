@@ -5,8 +5,8 @@
 
 namespace App\Controller;
 
-use App\Form\SallesType;
 use App\Entity\Salles;
+use App\Form\SallesType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -73,4 +73,17 @@ class SallesController extends AbstractController
            'form' => $form->createView(),
        ]);
     }
+
+    /**
+     * @Route("/salles/list", name="list_salles")
+     */
+
+     public function list(){
+
+        $salles=$this->getDoctrine()->getRepository(Salles::class)->findAll();
+
+        return $this->render("salles/list.html.twig",[
+            'salles' => $salles,
+        ]);
+     }
 }
