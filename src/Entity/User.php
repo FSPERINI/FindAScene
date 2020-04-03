@@ -62,14 +62,11 @@ class User implements UserInterface,\Serializable
         return $this;
     }
 
-    /**
-     * @return (Rolestring) []
-     */
     public function getRoles(): array
     {
         $roles = $this->roles;
         $roles[] = 'ROLE_ADMIN';
-        return $this->roles;
+        return array_unique($roles);
         
     }
     public function setRoles(array $roles): self
