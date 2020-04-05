@@ -3,16 +3,95 @@
 {% block title %}Accueil - {{ parent() }}{% endblock %}
 
 {% block body %}
-<header>
-<section>
-    <h2>présentation</h2>
-    <p>Bienvenu sur findasenne votre site d'anuaire de référence en terme mise en relation <ion-icon name="musical-note"></ion-icon>
-    <br>
-vous etes un artiste ou groupe en quete de salle affin de vous promouvoire en france alors bienvenu chez vous.
-<br>
-organisateur de festival booker tourneur notre bute et de vous rendre votre métier pationnant et pour que se qui était une avanture plenne de casse tete et d'embuche avant vous soit accèsible au bout de dois</p>
+
+<main>
+<div>
+
+
+<!-- Search bar -->
+    <nav class="searchBar">
+        <form>
+          <input type="text" placeholder="Nom d'une ville..." aria-label="Search">
+          <button type="submit">Trouver rapidement une salle...</button>
+        </form>
+      </nav>
+    <section class="section-one">
+        <article class="mainArt">
+            <!-- <img src={{ asset('public/img/musicien.png') }} alt="Musicien sur scène"> -->
+            <a href="formA.html"><h3>Trouve ta scène !</h3></a>
+            <p></span>[A VERIFIER]</span>Vous etes un artiste ou groupe en quete de salle afin de vous promouvoir en france ? Vous êtes au bon endroit ! Trouvez la salle de vos rêves dans la ville de votre choix en quelques clics !</p>
+        </article>
+        <article class="mainArt">
+           <!-- <img src="public\img\indian-rock.jpg" alt="Public"> -->
+            <a href="formB.html"><h3>Fais jouer des artistes !</h3></a>
+            <p></span>[A VERIFIER]</span>Organisateur de festival, booker, propriétaire d'une salle ou tourneur à la recherche d'artistes à produire sur scène, vos prises de contacts n'ont jamais été aussi faciles avec FindAScene !  </p>
+        </article>
+        <article class="mainArt">
+           <!-- <img src="public\img\indian-rock.jpg" alt="Public"> -->
+            <a href=""><h3>Faites-vous connaître !</h3></a>
+            <p>Placez vous au devant de la scène et mettez en valeur vos atouts en étoffant votre liste de contact ![A COMPLETER]</p>
+        </article>
+    </section>
+    
+<!-- ////////////////// HTML AJOUTE OUSMANE ///////////// -->
+    <h2>liste des salle en vedette</h2>
+<section class="">
+
+<ul>
+    <li>
+        <a href="#">salles du théatre "lille"</a>
+        <p>Notre salle vous acueille pour vos représentations dans la métropole lilloise.
+            <br>
+            parfaitement situé au centre de lille, proche des transport en comain notre salle sera une alternative
+            parfaite pour vos représentation de moin de 500 personne</p>
+    </li>
+    <li>
+        <a href="#">salle de la renaissance "villeNeuveD'asque"</a>
+        <p>
+            salle spacieuse et lumineuse la salle de la renaissance est faite pour vous si bou eêtes un groupe désireu
+            d'intégré la métropole lilloise a votre calendrier de tourné</p>
+    </li>
+    <li>
+        <a href="#">le prestige "lion"</a>
+        <p>
+            votre boite de nuit le club le prestige vous acueil pour vos showCase.
+            <br>
+            notre clientaille est jeunes est aime s'embienser sur des son pop et tendence que notre dj (s) se fai
+            plaisire d'embiencer chaque weekend</p>
+    </li>
+    <li>
+        <a href="#">la cavalerie "marseille"</a>
+        <p>
+            le caffé théatre la cavalerie d'une capassité d'acueil de 300 personne vous resoi pour vo représentation sur
+            marseille</p>
+    </li>
+    <li>
+        <a href="#">le zénite "paris"</a>
+        <p>
+            Faite comme toute les plus grand start mondiaux que notre établissement a eu la joie d'acueillir jusqu'a
+            aujourdui et choisesser notre salle pour vos concert sur paris</p>
+    </li>
+    <li>
+        <a href="#">chez régine "paris</a>
+        <p>
+            showCase, prestationthéatrale ou toute représentation artistique chez régine se fera un plaisire de
+            promouvoir votre incroyable talent</p>
+    </li>
+    <li>
+        <a href="#">olimpia "srtasbourg</a>
+        <p>
+            après avoir accueilli les plus grand du milieu l'olimpia vous invite a suivre leur exemple et a faire vibrer
+            votre publique dans l'embience la plus magistral quil soit dans notre établissement de capassité d'acueil
+            élever</p>
+    </li>
+</ul>
 </section>
-</header>
-    @todo Mettre la navbar dans la Base !
+</section>
+
+
+    
+
+</main>
+
 
 {% endblock %}
