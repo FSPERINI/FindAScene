@@ -109,6 +109,25 @@ class Musiciens
      * @ORM\Column(type="string", length=255)
      */
     private $slug;
+    
+    /**
+     * @ORM\Column(type="json")
+     */
+    private $roles = [];
+
+    public function getRoles(): array
+    {
+        $roles = $this->roles;
+        $roles[] = 'ROLE_MUSICIENS';
+        return array_unique($roles);
+        
+    }
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
+
+        return $this;
+    }
 
     public function getId(): ?int
     {
