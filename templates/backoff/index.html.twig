@@ -25,8 +25,8 @@
                 <tr>
                     <td>{{ salle.NomSalle }}</td>
                     <td>
-                        <a href="{{ path ('admin.edit', {id: salle.id}) }}" class="btn btn-secondary">Editer</a>
-                        <form method="post" action="{{ path ('admin.delete', {id: salle.id}) }}" style="display: inline-block" onsubmit="return confirm('Action irrémédiable')">
+                        <a href="{{ path ('admin_edit', {id: salle.id}) }}" class="btn btn-secondary">Editer</a>
+                        <form method="post" action="{{ path ('admin_delete', {id: salle.id}) }}" style="display: inline-block" onsubmit="return confirm('Action irrémédiable')">
                             <input type="hidden" name="_method" value="delete">
                             <input type="hidden" name="_token" value="{{csrf_token('delete' ~ salle.id)}}">
                             <button class="btn btn-danger">Supprimer</button>
@@ -53,8 +53,8 @@
             <tr>
                 <td>{{ musicien.NomGrp }}</td>
                 <td>
-                    <a href="{{ path ('admin.edit', {id: musicien.id}) }}" class="btn btn-secondary">Editer</a>
-                    <form method="post" action="{{ path ('admin.delete', {id: musicien.id}) }}" style="display: inline-block" onsubmit="return confirm('Action irrémédiable')">
+                    <a href="{{ path ('admin_edit', {id: musicien.id}) }}" class="btn btn-secondary">Editer</a>
+                    <form method="post" action="{{ path ('admin_delete', {id: musicien.id}) }}" style="display: inline-block" onsubmit="return confirm('Action irrémédiable')">
                         <input type="hidden" name="_method" value="delete">
                         <input type="hidden" name="_token" value="{{csrf_token('delete' ~ musicien.id)}}">
                         <button class="btn btn-danger">Supprimer</button>
