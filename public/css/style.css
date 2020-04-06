@@ -121,6 +121,7 @@ h2{
 }
 .titleList{ /* Titre + ville + image des salles vedettes */
     width: 20em;
+    margin-left: 1em;
 }
 .descriptionList{ /* résumé des salles vedettes */
     text-align: center;
