@@ -10,6 +10,7 @@ a:link{
 a:hover{ 
     transition-duration: 0.2s;
     color: red;
+    
 }
 button:hover {
     transition-duration: 0.4s;
@@ -17,12 +18,23 @@ button:hover {
 }
 a{
     color: black;
-    text-shadow: 1px 1px 2px black;
+    
 }
 p{
     font-family: 'Crete Round', serif;
 }
+
 /******************************** ******************** ************************************************/
+body{
+    background-attachment:fixed;
+    margin-top: 0em;
+    background-image: url(../img/indian-rock.jpg); 
+    background-size: 100%;
+    background-repeat: no-repeat;   
+}
+main{
+    position: relative;
+}
 header{
     display: flex;
     justify-content: space-between;
@@ -36,30 +48,29 @@ header{
     flex-direction: row;
     justify-content: space-between;
     margin: 1em;
+    
 }
 li{
     margin-left:  2em;
     list-style: none;
 }
-
-
 .mainPageButton{
 
     font-size: larger;
+    font-style: inherit;
+}
+/******************************* FINDASCENE TOP LEFT **************************************************/
+#mainNav{
+    font-family: 'Knewave', cursive;
+    text-shadow: 1px 2px 0px goldenrod;
+    
+}
+#mainNav:hover{
+    transition-duration: 0.2s;
+    color: red;
+    text-shadow: 1px 5px 0px grey;
 }
 
-body{
-    background-attachment:fixed;
-    margin-top: 0em;
-    background-image: url(../img/indian-rock.jpg); 
-    background-size: 100%;
-    background-repeat: no-repeat;
-    
-    
-}
-main{
-    position: relative;
-}
 /******************************** ******************** ************************************************/
 /*******************************  SECTIONS & ARTICLES  ************************************************/
 /******************************** ******************** ************************************************/
@@ -74,12 +85,9 @@ section{
 .input-group{
     background-color: rgba(255, 235, 56, 0.247);
 }
-article{
-    background-color: rgba(255, 202, 58, 0.466);
-    
-}
 .mainArt{
     border: 2px solid black;
+    background-color: rgba(255, 202, 58, 0.466);
     border-radius: 5px;
     margin: 5em;
     margin-top: 0px;
@@ -88,9 +96,46 @@ article{
     box-shadow: 0px 0px 15px black;
     text-align: center;
 }
+img{
+    max-width: 350px;
+    height: 250px;
+    border-radius: 5%;
+    margin: 1em;
+}
+h2{
+    margin-left: 5em;
+}
+.homeList{ /* Section "liste des salles vedettes" */
+    border: 1px solid white;
+    box-shadow: 1px 1px 3px white;
+    background-color: rgba(138, 138, 138, 0.508);
+    display: flex;
+    flex-wrap: wrap;
+}
+.homeList article{ /* articles dans la liste des salles vedettes */
+    margin: 2em;
+    border: 2px solid black;
+    box-shadow: 1px 1px 3px black;
+    background-color:rgba(255, 255, 255, 0.7);
+  
+}
+.titleList{ /* Titre + ville + image des salles vedettes */
+    width: 20em;
+}
+.descriptionList{ /* résumé des salles vedettes */
+    text-align: center;
+    max-width: 400px;
 
-#mainTitle{
-    font-family: 'Knewave', cursive;
+}
+.ensavoirplus{
+    position: relative;
+    left: 5em;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 5%;
+    height: 50px;
+    width: 200px;
+    margin-bottom: 1em;
 }
 /******************************** ******************** ************************************************/
 /******************************** SEARCH BAR HOME PAGE ************************************************/
@@ -118,14 +163,11 @@ input[type=text]{
     margin: 8px 0;
     box-sizing: border-box;
     font-size: larger;
-    
 }
 input[type=text]:focus {
     
     background-color: white;
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
-    
-    
 }
 button[type=submit]{
     color: black;
@@ -135,7 +177,6 @@ button[type=submit]{
     font-family: 'Heebo', sans-serif;
     position: relative;
     left: 9em;
-    
 }
 /******************************** ******************** ************************************************/
 footer{
@@ -146,13 +187,10 @@ footer{
     padding-top: 1em;
     text-align: center;
     color: white;
-
 }
 .footerNav{
     display: flex;
     flex-direction: column start;
-    
-
 }
 .footerList{
     height: 200px;  
