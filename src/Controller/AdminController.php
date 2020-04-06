@@ -60,7 +60,7 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route ("/admin/{id}", name="admindelete", methods="delete")
+     * @Route ("/admin/{id}", name="admin_delete", methods="delete")
      *  @return \Symfony\Component\HttpFoundation\Response
      */
     public function delete(Salles $salles, Request $request)
