@@ -7,10 +7,9 @@ namespace App\Controller;
 use App\Entity\Manager;
 use App\Entity\Salles;
 use App\Form\SallesType;
-use App\Form\ManagerType;
 use App\Repository\SallesRepository;
 use App\Repository\ManagerRepository;
-use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -26,7 +25,7 @@ class AdminController extends AbstractController
      */
     private $managerrepository;
 
-    public function __construct(SallesRepository $sallesrepository, ManagerRepository $managerrepository, EntityManager $em)
+    public function __construct(SallesRepository $sallesrepository, ManagerRepository $managerrepository, EntityManagerInterface $em)
     {        
         $this->sallesrepository = $sallesrepository;
         $this->managerrepository = $managerrepository;
@@ -63,7 +62,7 @@ class AdminController extends AbstractController
      * @Route ("/admin/{id}", name="admin_delete", methods="delete")
      *  @return \Symfony\Component\HttpFoundation\Response
      */
-    public function delete(Salles $salles, Request $request)
+    public function delete(Salles $salles, Manager $manager, Request $request)
     {
         if ($this->isCsrfTokenValid('delete'.$salles->getId(), $request->get('_token'))) {
             $this->em->remove($salles);
