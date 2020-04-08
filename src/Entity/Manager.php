@@ -75,15 +75,17 @@ class Manager
     private $slug;
     
     /**
-     * @ORM\Column(type="json")
+     * @var array
+     * @ORM\Column(type="string")
      */
     private $roles = [];
 
-    public function getRoles(): array
+    public function getRoles(): string
     {
         $roles = $this->roles;
         $roles[] = 'ROLE_MANAGER';
-        return array_unique($roles);
+        $roles = implode('', $roles);
+        return ($roles);
     }
 
     public function setRoles(array $roles): self

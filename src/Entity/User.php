@@ -66,6 +66,7 @@ class User implements UserInterface,\Serializable
     {
         $roles = $this->roles;
         $roles[] = 'ROLE_ADMIN';
+        
         return array_unique($roles);
         
     }
