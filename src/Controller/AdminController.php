@@ -4,11 +4,13 @@
 
 namespace App\Controller;
 
-use App\Entity\Musiciens;
+use App\Entity\Manager;
 use App\Entity\Salles;
 use App\Form\SallesType;
+use App\Form\ManagerType;
 use App\Repository\SallesRepository;
-use App\Repository\MusiciensRepository;
+use App\Repository\ManagerRepository;
+use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,14 +22,15 @@ class AdminController extends AbstractController
      */
     private $sallesrepository;
     /**
-     * @var MusiciensRepository
+     * @var ManagerRepository
      */
-    private $musiciensrepository;
+    private $managerrepository;
 
-    public function __construct(SallesRepository $sallesrepository, MusiciensRepository $musiciensrepository)
+    public function __construct(SallesRepository $sallesrepository, ManagerRepository $managerrepository, EntityManager $em)
     {        
         $this->sallesrepository = $sallesrepository;
-        $this->musiciensrepository = $musiciensrepository;
+        $this->managerrepository = $managerrepository;
+        $this->em = $em;
     }
 
 
@@ -38,29 +41,26 @@ class AdminController extends AbstractController
     public function index()
     {
        $salles = $this->sallesrepository->findAll();
-       $musiciens = $this->musiciensrepository->findAll();
-       return $this->render ("backoff/index.html.twig", compact ('salles', 'musiciens'));
+       $manager = $this->managerrepository->findAll();
+       return $this->render ("backoff/index.html.twig", compact ('salles', 'manager'));
     }
 
     /**
      * @Route("/admin/{id}", name="admin_edit", methods="GET|POST")
      * @param Salles $salles
-     * @param Musiciens $musiciens
      */
-    public function edit(Salles $salles, Musiciens $musiciens, Request $request)
+    public function edit(Salles $salles, Request $request)
     {
         $form = $this->createForm(SallesType::class, $salles);
-        
-              
+                      
         return $this->render('backoff/edit.html.twig', [
         'salle' => $salles,
-        'musicien' => $musiciens,
         'form' => $form->createView()
         ]);
     }
 
     /**
-     * @Route ("/admin/{id}", name="admindelete", methods="delete")
+     * @Route ("/admin/{id}", name="admin_delete", methods="delete")
      *  @return \Symfony\Component\HttpFoundation\Response
      */
     public function delete(Salles $salles, Request $request)
@@ -68,9 +68,9 @@ class AdminController extends AbstractController
         if ($this->isCsrfTokenValid('delete'.$salles->getId(), $request->get('_token'))) {
             $this->em->remove($salles);
             $this->em->flush();
-            $this->addFlash('success', 'Votre annonce a bien été supprimée');
+            $this->addFlash('success', 'Le lieu ou l\'\utilisateur a bien été supprimé');
         }
         
-        return $this->redirectToRoute('admin.index');
+        return $this->redirectToRoute('/backoff/index.html.twig');
     }
 }
