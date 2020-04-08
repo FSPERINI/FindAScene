@@ -1,15 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}S'inscrire - {{ parent() }}{% endblock %}
+{% block title %}Modifier le profil - {{ parent() }}{% endblock %}
 
 {% block body %}
-
     <div class="container">
         {{ form_start(form) }}
             {{ form_widget(form) }}
 
-            <button class="btn btn-success">Confirmer votre inscription</button>
-
+            <button class="btn btn-primary" formnovalidate>
+                Modifier le profil
+            </button>
         {{ form_end(form) }}
     </div>
 {% endblock %}
