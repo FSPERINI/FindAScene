@@ -12,20 +12,24 @@
     <script src="https://kit.fontawesome.com/64018adab9.js" crossorigin="anonymous"></script>
 
     <!-- LIENS GOOGLE FONT -->
-    <link href="https://fonts.googleapis.com/css?family=Dancing+Script|Pacifico|Shadows+Into+Light|Spicy+Rice&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Heebo|Knewave|Noto+Sans+KR|Rock+Salt|Slabo+27px|Crete+Round&display=swap" rel="stylesheet">          {% block stylesheets %}
+    <link href="https://fonts.googleapis.com/css?family=Dancing+Script|Pacifico|Shadows+Into+Light|Bitter|Spicy+Rice&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Heebo|Knewave|Noto+Sans+KR|Rock+Salt|Slabo+27px|Crete+Round&display=swap" rel="stylesheet">          
+    {% block stylesheets %}
     <link href="{{ asset('css/style.css') }}" rel="stylesheet" />
         {% endblock %}
 </head>
 {% block header %}
 <header>
     <!-- Boostrap nav-->
-    <a href="#"><h1 id="mainTitle"><i class="fas fa-music"></i> FindAScene <i class="fas fa-music"></i></h1></a>
+    <a href="#"><h1 id="mainNav"><i class="fas fa-music"></i> FindAScene <i class="fas fa-music"></i></h1></a>
                 <nav>
                     <ul id="headerUl">
-                        
-                        <li class="mainPageButton" > <a href="{{ path ('login') }}">Connexion</a></li>
+                        <li class="mainPageButton" > <a href="choixLogin.html">Voir les annonces</a></li>
+                        <li class="mainPageButton" > <a href="choixLogin.html">Mon Profil</a></li>
+                        <li class="mainPageButton" > <a href="#">Connexion</a></li>
                         <li class="mainPageButton" > <a href="choixLogin.html">Inscrivez-vous !</a></li>
+                        
+                        
                     </ul>
                 </nav>
 </header>
@@ -86,7 +90,7 @@
     </div>
 
         <div class="copyright">
-        <strong>  &copy 2020 all right reserved </strong>
+        <strong>  &copy 2020 all rights reserved </strong>
         <p> Créé par Ousmane, Denis, Fabio et Maxime.</p>
     </div>
 </footer>
