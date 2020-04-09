@@ -40,12 +40,13 @@ class ManagerController extends AbstractController
      */
     public function profile(Manager $profile)
     {
+        $user= $this->getUser();
         return $this->render('manager/profile.html.twig'   
         );
     }
 
     /**
-     * @Route("/manager/profile{id}", name="edit_manager", methods="GET|POST")
+     * @Route("/manager/profile/{id}", name="edit_manager", methods="GET|POST")
      * @param Manager $manager
      */
     public function edit(Manager $manager, Request $request)
