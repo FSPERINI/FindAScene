@@ -61,3 +61,42 @@ $.get(url)
 .fail(function() {
     alert( "error : le serveur ne répond pas" );
 })
+
+var galerie = document.getElementById('galerie');
+
+if(galerie){
+    var foto = galerie.querySelectorAll('.photo');
+    var popup;
+
+    foto.forEach(function(i, k){
+        i.addEventListener('click', function() {
+            popup = document.createElement('div');
+            popup.className="popup";
+            galerie.appendChild(popup);
+
+            var imagePopup = i.cloneNode();
+            var btnPopup = document.createElement('button');
+            btnPopup.innerText="fermer";
+
+            popup.appendChild(imagePopup)
+            popup.style.position='fixed';
+            popup.style.backgroundColor='rgba(0, 0, 0, 0.5)';
+            popup.style.top=0;
+            popup.style.left=0;
+            popup.style.height='100%';
+            popup.style.width='100%';
+            popup.style.padding='3em';
+            imagePopup.style.width='100%';
+            imagePopup.style.height='100%';
+
+            popup.appendChild(btnPopup);
+            btnPopup.addEventListener("click", ()=> {
+                popup.remove()
+            })
+            
+        })
+    });
+}
+else {
+    console.log('#galerie non défini');
+}
