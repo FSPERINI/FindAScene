@@ -4,12 +4,13 @@ namespace App\Entity;
 
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ManagerRepository")
  */
-class Manager
+class Manager implements UserInterface,\Serializable
 {
     /**
      * @ORM\Id()
@@ -76,16 +77,15 @@ class Manager
     
     /**
      * @var array
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="json")
      */
     private $roles = [];
 
-    public function getRoles(): string
+    public function getRoles(): array
     {
         $roles = $this->roles;
-        $roles[] = 'ROLE_MANAGER';
-        $roles = implode('', $roles);
-        return ($roles);
+        $roles[] = 'ROLE_USER';
+        return array_unique($roles);
     }
 
     public function setRoles(array $roles): self
@@ -223,5 +223,16 @@ class Manager
             $this->name,
             $this->password
         ) = unserialize($serialized, ['allowed_classes' => false]);
+    }
+    public function getUsername(): ?string
+    {
+        return $this->username;
+    }
+
+    public function setUsername(string $username): self
+    {
+        $this->username = $username;
+
+        return $this;
     }
 }

@@ -65,7 +65,7 @@ class User implements UserInterface,\Serializable
     public function getRoles(): array
     {
         $roles = $this->roles;
-        $roles[] = 'ROLE_MANAGER';
+        $roles[] = 'ROLE_ADMIN';
         
         return array_unique($roles);
         

@@ -27,7 +27,7 @@ class ManagerController extends AbstractController
             $entityManager->persist($manager);
             $entityManager->flush();
             $this->addFlash('success', 'Votre compte a bien été créé');
-            return $this->redirectToRoute('home.html.twig');
+            return $this->redirectToRoute('home/home.html.twig');
         }
 
         return $this->render('manager/new.html.twig',[
@@ -40,7 +40,7 @@ class ManagerController extends AbstractController
      */
     public function profile(Manager $profile)
     {
-        $user= $this->getUser();
+        $profile= $this->getUser();
         return $this->render('manager/profile.html.twig'   
         );
     }
