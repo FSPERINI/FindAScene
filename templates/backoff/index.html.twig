@@ -1,7 +1,3 @@
-<!--PAGE D'AFFICHAGE DU MODE ADMIN AVEC EDITION ET SUPPRESSION DES DONNEES
-ENTREES DANS LES FORMULAIRES MUSICIENS ET SALLES-->
-
-
 {% extends 'base.html.twig' %}
 
 {% block title 'Godmode' %}
@@ -13,6 +9,9 @@ ENTREES DANS LES FORMULAIRES MUSICIENS ET SALLES-->
             {{ message }}
         </div>
         {% endfor %}
+
+<!--======================= Tableau édition/suppression des users salles =================-->
+    <h2> Salles de Concert</h2>
     <div class="container mt-4">
         <table class="table table-striped">
             <thead>
@@ -24,12 +23,12 @@ ENTREES DANS LES FORMULAIRES MUSICIENS ET SALLES-->
             <tbody>
                 {% for salle in salles %}
                 <tr>
-                    <td>{{ salle.title }}</td>
+                    <td>{{ salle.NomSalle }}</td>
                     <td>
-                        <a href="{{ path ('admin.edit', {id: salle.id}) }}" class="btn btn-secondary">Editer</a>
-                        <form method="post" action="{{ path ('admin.delete', {id: salle.id}) }}" style="display: inline-block" onsubmit="return confirm('Action irrémédiable')">
+                        <a href="{{ path ('admin_edit', {id: salle.id}) }}" class="btn btn-secondary">Editer</a>
+                        <form method="post" action="{{ path ('admin_delete', {id: salle.id}) }}" style="display: inline-block" onsubmit="return confirm('Action irrémédiable')">
                             <input type="hidden" name="_method" value="delete">
-                            <input type="hidden" name="_token" value="{{csrf_token('delete' ~ property.id)}}">
+                            <input type="hidden" name="_token" value="{{csrf_token('delete' ~ salle.id)}}">
                             <button class="btn btn-danger">Supprimer</button>
                         </form>
                     </td>
@@ -39,7 +38,32 @@ ENTREES DANS LES FORMULAIRES MUSICIENS ET SALLES-->
         </table>            
     </div>
     
-    <div class="text-right">
-        <a href="{{ path ('admin.new') }}" class="btn btn-primary mr-5">Créer une nouvelle annonce</a>
-    </div>
+<!--======================= Tableau édition/suppression des users musiciens =================-->
+<h2> Musiciens - groupes</h2>
+<div class="container mt-4">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Utilisateur</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for managerz in manager %}
+            <tr>
+                <td>{{ managerz.name }}</td>
+                <td>
+                    <a href="{{ path ('admin_edit', {id: managerz.id}) }}" class="btn btn-secondary">Editer</a>
+                    <form method="post" action="{{ path ('admin_delete', {id: managerz.id}) }}" style="display: inline-block" onsubmit="return confirm('Action irrémédiable')">
+                        <input type="hidden" name="_method" value="delete">
+                        <input type="hidden" name="_token" value="{{csrf_token('delete' ~ musicien.id)}}">
+                        <button class="btn btn-danger">Supprimer</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>            
+</div>
+    
 {% endblock %}

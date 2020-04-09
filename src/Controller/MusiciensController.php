@@ -40,23 +40,35 @@ class MusiciensController extends AbstractController
      * @Route("/musiciens/profil/edit/{slug}", name="edit_musiciens")
      */
 
-     public function edit(Request $request, Musiciens $musiciens)
+     public function edit(Request $request, Musiciens $musiciens, SluggerInterface $slugger)
      {
 
         $form = $this->createForm(MusiciensType::class, $musiciens);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-       
+        if ($form->isSubmitted() && $form->isValid()) 
+        {
+            $musiciens->setSlug($slugger->slug($musiciens->getNomGrp())->lower());
+
             $this->getDoctrine()->getManager()->flush();
         }
 
         return $this->render('musiciens/edit.html.twig', [
             'form' => $form->createView(),
         ]);
-
-        
-
-
      }
+
+     /**
+     * @Route("/musiciens/show/{slug}", name="show_musiciens")
+     */
+
+    public function show($slug){
+         
+        $musiciens = $this->getDoctrine()->getRepository(Musiciens::class)->findOneBy(['slug'=>$slug]);
+
+        return $this->render('musiciens/show.html.twig', [
+            'musiciens' => $musiciens,
+        ]);
+     }
+
 }

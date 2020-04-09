@@ -5,8 +5,8 @@
 
 namespace App\Controller;
 
-use App\Form\SallesType;
 use App\Entity\Salles;
+use App\Form\SallesType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -50,6 +50,40 @@ class SallesController extends AbstractController
 
         return $this->render('salles/show.html.twig', [
             'salle' => $salles,
+        ]);
+     }
+
+    /**
+     * @Route("/salles/profil/edit/{slug}", name="edit_salles")
+     */
+
+    public function edit(Request $request, Salles $salles, SluggerInterface $slugger)
+    {
+
+       $form = $this->createForm(SallesType::class, $salles);
+       $form->handleRequest($request);
+
+       if ($form->isSubmitted() && $form->isValid())
+       {
+           $salles->setSlug($slugger->slug($salles->getNomSalle())->lower());
+           $this->getDoctrine()->getManager()->flush();
+       }
+
+       return $this->render('salles/edit.html.twig', [
+           'form' => $form->createView(),
+       ]);
+    }
+
+    /**
+     * @Route("/salles/list", name="list_salles")
+     */
+
+     public function list(){
+
+        $salles=$this->getDoctrine()->getRepository(Salles::class)->findAll();
+
+        return $this->render("salles/list.html.twig",[
+            'salles' => $salles,
         ]);
      }
 }

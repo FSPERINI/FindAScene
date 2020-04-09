@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Page de profil - {{ parent() }}{% endblock %}
+
+{% block body %}
+
+{% block body %} 
+<h1>Éditer mon profil</h1>
+    <div class="container mt-4">
+        
+    </div>
+<h1>Historique des recherches</h1>
+{% for message in app.flashes('success') %}
+        <div class="alert success">
+            {{ message }}
+        </div>
+        {% endfor %}
+    <div class="container mt-4">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nom de la salle</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for salle in salles %}
+                <tr>
+                    <td>{{ salle.NomSalle}}</td>
+                    <td>
+                            <form method="post" action="{{ path ('managerdelete', {id: salle.id}) }}" style="display: inline-block" onsubmit="return confirm('Action irrémédiable')">
+                            <input type="hidden" name="_method" value="delete">
+                            <input type="hidden" name="_token" value="{{csrf_token('delete' ~ salle.id)}}">
+                            <button class="btn btn-danger">Supprimer</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>            
+    </div>
+    
+    <div class="text-right">
+        <a href="{{ path ('manager.new') }}" class="btn btn-primary mr-5">????????????</a>
+    </div>
+{% endblock %}

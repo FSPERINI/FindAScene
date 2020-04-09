@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -108,6 +109,30 @@ class Musiciens
      * @ORM\Column(type="string", length=255)
      */
     private $slug;
+    
+    /**
+     * @ORM\Column(type="json")
+     */
+    private $roles = [];
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $Manager;
+
+    public function getRoles(): array
+    {
+        $roles = $this->roles;
+        $roles[] = 'ROLE_MUSICIENS';
+        return array_unique($roles);
+        
+    }
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
+
+        return $this;
+    }
 
     public function getId(): ?int
     {
@@ -125,7 +150,7 @@ class Musiciens
 
         return $this;
     }
-
+    
     public function getMail(): ?string
     {
         return $this->mail;
@@ -218,6 +243,18 @@ class Musiciens
     public function setSlug(string $slug): self
     {
         $this->slug = $slug;
+
+        return $this;
+    }
+
+    public function getManager(): ?string
+    {
+        return $this->Manager;
+    }
+
+    public function setManager(string $Manager): self
+    {
+        $this->Manager = $Manager;
 
         return $this;
     }
