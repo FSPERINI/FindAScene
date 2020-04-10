@@ -25,11 +25,12 @@
                 <nav>
                     <ul id="headerUl">
                         <li class="mainPageButton" > <a href="{{ path ('new_salles') }}">Ajouter une salle</a></li>
-                        <li class="mainPageButton" > <a href="{{ path ('profile_manager') }}">Mon Profil</a></li>
-                        <li class="mainPageButton" > <a href="{{ path ('login') }}">Connexion</a></li>
                         <li class="mainPageButton" > <a href="{{ path ('new_manager') }}">Inscrivez-vous !</a></li>
-                        
-                        
+                        <li class="mainPageButton" > <a href="{{ path ('login') }}">Connexion</a></li>
+                        {% if app.user %}
+                        <li class="mainPageButton" > <a href="{{ path ('profile_manager') }}">Mon Profil</a></li>
+                        <li class="mainPageButton" > <a href="{{ path ('logout') }}">Se Déconnecter</a></li>
+                        {% endif %}
                     </ul>
                 </nav>
 </header>
@@ -94,5 +95,5 @@
         <p> Créé par Ousmane, Denis, Fabio et Maxime.</p>
     </div>
 </footer>
-{% endblock %}
 </html>
+{% endblock %}

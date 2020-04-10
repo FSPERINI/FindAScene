@@ -46,13 +46,20 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/admin/{id}", name="admin_edit", methods="GET|POST")
+     * @Route("/admin/edit{id}", name="admin_edit", methods="GET|POST")
      * @param Salles $salles
      */
     public function edit(Salles $salles, Request $request)
     {
         $form = $this->createForm(SallesType::class, $salles);
-                      
+        $form->handleRequest($request);
+        
+        if ($form->isSubmitted() && $form->isValid()){
+            $this->em->flush();
+            $this->addFlash('success', 'Les infos ont bien été modifiées');
+            return $this->redirectToRoute('admin.index');
+        }
+
         return $this->render('backoff/edit.html.twig', [
         'salle' => $salles,
         'form' => $form->createView()
