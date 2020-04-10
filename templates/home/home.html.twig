@@ -10,11 +10,16 @@
 
 <!-- Search bar -->
     <nav class="searchBar">
-        <form>
-          <input type="text" class="searchInput" placeholder="Nom d'une ville..." aria-label="Search">
+    <form id="search">
+        <input type="search" name="query" class="searchInput" placeholder="Nom d'une ville..." aria-label="Search">
           <button type="submit" class="searchBtn">Trouver rapidement une salle...</button>
-        </form>
+    </form>
       </nav>
+    <div id="map">
+        </div>
+                <ul style="list-style-type: decimal;" id="result">
+            <!--Ici intégrer la map-->
+        </ul>
     <section class="section-one">
         <article class="mainArt">
             <a href="#"><h3>Trouve ta scène !</h3></a>
@@ -147,5 +152,10 @@
 
 </main>
 
+
+    <script src="/public/leaflet/leaflet.js"></script>
+     <script src="/public/jquery/jquery-3.4.1.min.js"></script> 
+    <script src="/public/js/script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 
 {% endblock %}
