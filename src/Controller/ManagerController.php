@@ -27,7 +27,7 @@ class ManagerController extends AbstractController
             $entityManager->persist($manager);
             $entityManager->flush();
             $this->addFlash('success', 'Votre compte a bien été créé');
-            return $this->redirectToRoute('home.html.twig');
+            return $this->redirectToRoute('home/home.html.twig');
         }
 
         return $this->render('manager/new.html.twig',[
@@ -36,22 +36,29 @@ class ManagerController extends AbstractController
         ]);
     }
     /**
-     * @Route ("/manager/profile", name="profile_manager")
+     * @Route ("/manager/profil", name="profile_manager")
      */
     public function profile(Manager $profile)
     {
+        $profile= $this->getUser();
         return $this->render('manager/profile.html.twig'   
         );
     }
 
     /**
-     * @Route("/manager/profile{id}", name="edit_manager", methods="GET|POST")
+     * @Route("/manager/profil/edit{id}", name="edit_manager", methods="GET|POST")
      * @param Manager $manager
      */
     public function edit(Manager $manager, Request $request)
     {
         $form = $this->createForm(ManagerType::class, $manager);
-                      
+        $form->handleRequest($request);
+        
+        if ($form->isSubmitted() && $form->isValid()){
+            $this->em->flush();
+            $this->addFlash('success', 'Les infos ont bien été modifiées');
+            return $this->redirectToRoute('manager.profil');
+        }       
         return $this->render('manager/edit.html.twig', [
         'manager' => $manager,
         'form' => $form->createView()
