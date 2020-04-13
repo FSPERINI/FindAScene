@@ -12,7 +12,7 @@
     <script src="https://kit.fontawesome.com/64018adab9.js" crossorigin="anonymous"></script>
 
     <!-- LIENS GOOGLE FONT -->
-    <link href="https://fonts.googleapis.com/css?family=Dancing+Script|Pacifico|Shadows+Into+Light|Bitter|Spicy+Rice&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Dancing+Script|Pacifico|Shadows+Into+Light|Bitter|Spicy+Rice|Roboto&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Heebo|Knewave|Noto+Sans+KR|Rock+Salt|Slabo+27px|Crete+Round&display=swap" rel="stylesheet">          
     {% block stylesheets %}
     <link href="{{ asset('css/style.css') }}" rel="stylesheet" />
@@ -24,6 +24,7 @@
     <a href="{{ path('home')}}"><h1 id="mainNav"><i class="fas fa-music"></i> FindAScene <i class="fas fa-music"></i></h1></a>
                 <nav>
                     <ul id="headerUl">
+
                         <li class="mainPageButton" > <a href="{{ path ('new_salles') }}">Ajouter une salle</a></li>
                         <li class="mainPageButton" > <a href="{{ path ('new_manager') }}">Inscrivez-vous !</a></li>
                         <li class="mainPageButton" > <a href="{{ path ('login') }}">Connexion</a></li>
