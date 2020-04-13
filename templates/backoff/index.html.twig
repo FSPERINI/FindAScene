@@ -56,7 +56,7 @@
                     <a href="{{ path ('admin_edit', {id: managerz.id}) }}" class="btn btn-secondary">Editer</a>
                     <form method="post" action="{{ path ('admin_delete', {id: managerz.id}) }}" style="display: inline-block" onsubmit="return confirm('Action irrémédiable')">
                         <input type="hidden" name="_method" value="delete">
-                        <input type="hidden" name="_token" value="{{csrf_token('delete' ~ musicien.id)}}">
+                        <input type="hidden" name="_token" value="{{csrf_token('delete' ~ managerz.id)}}">
                         <button class="btn btn-danger">Supprimer</button>
                     </form>
                 </td>

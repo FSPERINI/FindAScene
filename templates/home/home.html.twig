@@ -14,10 +14,10 @@
                  <h4 id="welcome-subtitle">Trouvez le lieu de votre prochain concert! </h4>
         
     <nav class="searchBar">
-        <form>
-          <input type="text" class="searchInput" placeholder="Nom d'une ville..." aria-label="Search">
+    <form id="search">
+        <input type="search" name="query" class="searchInput" placeholder="Nom d'une ville..." aria-label="Search">
           <button type="submit" class="searchBtn">Trouver rapidement une salle...</button>
-        </form>
+    </form>
       </nav>
       <!-- BOOTSTRAP CAROUSEL 
 <div class="vedette">
@@ -41,6 +41,7 @@
                     <h5>Lille</h5>
                     <button class="btn-vedette">Acceder à la salle -> </button>
 </div> -->
+
     <section class="section-one">
         <article class="mainArt first">
             <div class="mainText">
@@ -74,5 +75,10 @@
   
 </main>
 
+
+    <script src="/public/leaflet/leaflet.js"></script>
+     <script src="/public/jquery/jquery-3.4.1.min.js"></script> 
+    <script src="/public/js/script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 
 {% endblock %}
