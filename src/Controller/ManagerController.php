@@ -8,24 +8,45 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
+
+/**
+ * @Route("/manager")
+ */
 class ManagerController extends AbstractController
 {
     /**
+     * @Route ("/", name="home_manager")
+     */
+    public function index()
+    {
+        return $this->render('manager/index.html.twig'   
+        );
+    }
+
+
+    /**
      * @Route("/manager/new", name="new_manager")
      */
-    public function new(Request $request, SluggerInterface $slugger)
+    public function new(Request $request, UserPasswordEncoderInterface $passwordEncoder, SluggerInterface $slugger)
     {
         $manager = new Manager();
         $form = $this->createForm(ManagerType::class, $manager);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()){
+        if ($form->isSubmitted() && $form->isValid()) {
 
+            $password = $passwordEncoder->encodePassword($manager, $manager->getPlainPassword());
+            $manager->setPassword($password);
+            $manager->setIsActive(true);
+            $manager->addRole("ROLE_MANAGER");
             $manager->setSlug($slugger->slug($manager->getName())->lower());
+            
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($manager);
             $entityManager->flush();
+            
             $this->addFlash('success', 'Votre compte a bien été créé');
             return $this->redirectToRoute('home/home.html.twig');
         }
@@ -35,16 +56,7 @@ class ManagerController extends AbstractController
             'form'=> $form->createView()
         ]);
     }
-    /**
-     * @Route ("/manager/profil", name="profile_manager")
-     */
-    public function profile(Manager $profile)
-    {
-        $profile= $this->getUser();
-        return $this->render('manager/profile.html.twig'   
-        );
-    }
-
+    
     /**
      * @Route("/manager/profil/edit{id}", name="edit_manager", methods="GET|POST")
      * @param Manager $manager

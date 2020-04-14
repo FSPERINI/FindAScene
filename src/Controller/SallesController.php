@@ -83,7 +83,8 @@ class SallesController extends AbstractController
         $salles=$this->getDoctrine()->getRepository(Salles::class)->findAll();
 
         return $this->render("salles/list.html.twig",[
-            'salles' => $salles,
+            'current_menu' => 'salles',
+            'salles' => $salles
         ]);
      }
 }

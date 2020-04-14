@@ -84,7 +84,7 @@ class Manager implements UserInterface,\Serializable
     public function getRoles(): array
     {
         $roles = $this->roles;
-        $roles[] = 'ROLE_USER';
+        $roles[] = 'ROLE_MANAGER';
         return array_unique($roles);
     }
 

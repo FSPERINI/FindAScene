@@ -1,15 +1,18 @@
-{% extends "base.html.twig" %}
+{% extends 'base.html.twig' %}
+
+{% block title 'Toutes les salles' %}
 
 {% block body %}
     <div class="container">
         {% for salle in salles %}
+        
             <div class="col-lg-3">
                 <div class="card shadow">
                     <div class="card-body">
-                        <h5>{{ salle.NomSalle}}</h5>
+                        <h2>{{ salle.NomSalle}}</h2>
                         <p>{{ salle.ville}}</p>
                         <p></p>
-                        <a href="{{ path('show_salles', {slug: salle.slug} ) }}" class="card-title">Voir la salle en détails</a>
+                        <a href="{{ path('show_salles', {slug: salle.slug, id: salle.id} ) }}" class="card-title">Voir la salle en détails</a>
                     </div>
                 </div>
             </div>
