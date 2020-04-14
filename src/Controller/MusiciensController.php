@@ -56,9 +56,19 @@ class MusiciensController extends AbstractController
         return $this->render('musiciens/edit.html.twig', [
             'form' => $form->createView(),
         ]);
-
-        
-
-
      }
+
+     /**
+     * @Route("/musiciens/show/{slug}", name="show_musiciens")
+     */
+
+    public function show($slug){
+         
+        $musiciens = $this->getDoctrine()->getRepository(Musiciens::class)->findOneBy(['slug'=>$slug]);
+
+        return $this->render('musiciens/show.html.twig', [
+            'musiciens' => $musiciens,
+        ]);
+     }
+
 }
