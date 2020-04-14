@@ -284,14 +284,21 @@ footer{
         width: 100%;
         text-align: center;
     }
+    .mainPageButton{
+        font-size: smaller;
+    }
 }
-@media only screen and (max-width: 830px){
+@media only screen and (max-width: 860px){
     .searchBtn[type=submit]{
         position: relative;
         left: O;
         margin: 0em;
-       
-        
+    }
+    .fas{
+        display: none;
+    }
+    .mainPageButton{
+        font-size: small;
     }
 }
 @media only screen and (max-width: 1174px){
