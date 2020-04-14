@@ -71,33 +71,10 @@ class Salles
      */
     private $slug;
 
-    /**
-     * @ORM\Column(type="json")
-     */
-    private $roles = [];
-
-    /**
-     * @ORM\Column(type="string", length=64)
-     */
-    private $password;
-
+    
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getRoles(): array
-    {
-        $roles = $this->roles;
-        $roles[] = 'ROLE_SALLES';
-        return array_unique($roles);
-        
-    }
-    public function setRoles(array $roles): self
-    {
-        $this->roles = $roles;
-
-        return $this;
     }
 
     public function getNomSalle(): ?string

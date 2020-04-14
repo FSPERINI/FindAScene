@@ -4,7 +4,23 @@
 
 {% block body %}
 
-    <div class="container">
-       @Todo mettre en page 
+<div class="jumbotron text-center" style="background-color:rgba(201, 212, 170, 0.788);">
+    <h1>{{ salle.NomSalle }}</h1>
+</div>
+<div class="container mt-4 text-center">
+    <div class="row">
+     <div class="col md-8">
+
+     </div>
+     <div class="col mt-4">
+        <h2>Adresse :{{ salle.Adresse}}  - Ville : {{ salle.Ville }} </h2>
+        <div class="text-primary" style="font-size:4rem;font-weight:bold;">{{ salle.Capacite}}</div>
+        <a href="#" class="btn btn-primary">Contacter la salle</a>
+     </div>   
     </div>
+    <p>
+        {{ salle.description | nl2br }}
+    </p>
+    
+</div>
 {% endblock %}
