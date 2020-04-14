@@ -31,6 +31,7 @@ class SallesType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Salles::class,
+            'translation_domain' => 'forms'
         ]);
     }
 
