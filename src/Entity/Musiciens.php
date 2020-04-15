@@ -6,7 +6,7 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
 /**
  * @ORM\Entity(repositoryClass="App\Repository\MusiciensRepository")
  */
@@ -28,7 +28,7 @@ class Musiciens implements UserInterface,\Serializable
     private $name;
 
     /**
-     * @ORM\Column(type="string", length=64)
+     * @ORM\Column(type="string", length=255)
      */
     private $password;
 
@@ -80,14 +80,7 @@ class Musiciens implements UserInterface,\Serializable
      * @ORM\Column(name="roles", type="json")
      */
     private $roles = array();
-
-    /**
-     * @Assert\NotBlank()
-     * @Assert\Length(max=250)
-     * @ORM\Column(type="string", length=255)
-     */
-    private $plainpassword;
-    
+        
     /**
      * @ORM\Column(name="is_active", type="boolean")
      */
@@ -270,15 +263,4 @@ class Musiciens implements UserInterface,\Serializable
         $this->isActive = $isActive;
     }
     
-    public function getPlainpassword(): ?string
-    {
-        return $this->plainpassword;
-    }
-
-    public function setPlainpassword(string $plainpassword): self
-    {
-        $this->plainpassword = $plainpassword;
-
-        return $this;
-    }
 }

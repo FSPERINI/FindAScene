@@ -37,10 +37,10 @@ class MusiciensController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $password = $passwordEncoder->encodePassword($musiciens, $musiciens->getPlainPassword());
+            $password = $passwordEncoder->encodePassword($musiciens, 'demo');
             $musiciens->setPassword($password);
             $musiciens->setIsActive(true);
-            $musiciens->addRole("ROLE_MUSICIENS");
+            $musiciens->addRole(['ROLE_MUSICIENS']);
             $musiciens->setSlug($slugger->slug($musiciens->getName())->lower());
             
             $entityManager = $this->getDoctrine()->getManager();
