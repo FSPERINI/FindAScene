@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'Tous les musiciens' %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/styleSalles.css') }}" rel="stylesheet" />
+{% endblock %}
+{% block body %}
+    <div class="container">
+        <div class="row">
+            {% for musicien in musiciens %}
+                <div class="col-lg-6">
+                    <article class="card-salle">
+                        <h2 class="titre-salle">{{ musicien.groupe}}</h2>
+                        <p>Le contacter: {{ musicien.mail}}</p>
+                        <p>A {{ musicien.city}}</p>
+                    </article>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

@@ -6,6 +6,7 @@ use App\Entity\Musiciens;
 use App\Entity\User;
 use App\Form\MusiciensType;
 use App\Form\UserType;
+use App\Repository\MusiciensRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -21,7 +22,17 @@ class MusiciensController extends AbstractController
     /**
      * @Route ("/", name="home_musiciens")
      */
-    public function index()
+    public function index(MusiciensRepository $musiciensRepository)
+    {
+        return $this->render('musiciens/list.html.twig', [
+            'musiciens' => $musiciensRepository->findAll(),
+        ]);
+    }
+
+    /**
+     * @Route ("/profil", name="profil_musiciens_show")
+     */
+    public function profil()
     {
         return $this->render('musiciens/show.html.twig', [
             'user' => $this->getUser(),
@@ -81,10 +92,10 @@ class MusiciensController extends AbstractController
     }
 
     /**
-     * @Route("/profil", name="profil_musiciens", methods="GET|POST")
+     * @Route("/profil/edit", name="profil_musiciens", methods="GET|POST")
      * @param Musiciens $musiciens
      */
-    public function profil(Request $request, UserPasswordEncoderInterface $encoder)
+    public function editProfil(Request $request, UserPasswordEncoderInterface $encoder)
     {
         $user = $this->getUser();
 
