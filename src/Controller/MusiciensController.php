@@ -38,7 +38,7 @@ class MusiciensController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $password = $passwordEncoder->encodePassword($musiciens, 'demo');
+            $password = $passwordEncoder->encodePassword($musiciens, $musiciens->getPassword());
             $musiciens->setPassword($password);
             $musiciens->setIsActive(true);
             $musiciens->addRole(['ROLE_MUSICIENS']);
