@@ -78,13 +78,14 @@ class SallesController extends AbstractController
      * @Route("/salles/list", name="list_salles")
      */
 
-     public function list(){
-
-        $salles=$this->getDoctrine()->getRepository(Salles::class)->findAll();
+     public function list(Request $request)
+     {
+        $query = $request->get('query');
+        $salles = $this->getDoctrine()->getRepository(Salles::class)->search($query);
 
         return $this->render("salles/list.html.twig",[
             'current_menu' => 'salles',
-            'salles' => $salles
+            'salles' => $salles,
         ]);
      }
 }

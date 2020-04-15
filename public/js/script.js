@@ -34,7 +34,10 @@ function proccess( response ){
         let address = response.features[ i ];
 
         let li = document.createElement('li');
-        li.innerText = address.properties.label;
+        let a = document.createElement('a');
+        a.innerText = address.properties.label;
+        a.href = '/salles/list?query='+encodeURIComponent(address.properties.label);
+        li.appendChild(a);
 
         list.appendChild( li );
     }
