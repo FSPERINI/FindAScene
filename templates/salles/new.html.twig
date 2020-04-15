@@ -9,11 +9,15 @@
 {% block body %}
 
     <div class="container">
-        {{ form_start(form) }}
-            {{ form_widget(form) }}
+        <div class="row">
+            <div class="col-lg-6 offset-lg-3">
+                {{ form_start(form) }}
+                    {{ form_widget(form) }}
 
-            <button class="btn btn-success">Ajouter cette Salle</button>
+                    <button class="btn btn-success">Ajouter cette Salle</button>
 
-        {{ form_end(form) }}
+                {{ form_end(form) }}
+            </div>
+        </div>
     </div>
 {% endblock %}
