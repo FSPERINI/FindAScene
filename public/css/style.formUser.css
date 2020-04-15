@@ -14,44 +14,6 @@ form{
     flex-wrap: wrap;
 }
 
-/* Inputs séparés */
-#salles_nom_salle{
-    width: 300px;
-    
-}
-#salles_nom_ref{
-    background-color: khaki;
-    width: 300px;
-}
-#salles_ville{
-    width: 300px;
-}
-#salles_adresse{
-    background-color: khaki;
-    width: 300px;
-}
-#salles_mail{
-    width: 300px;
-}
-#salles_tel{
-    background-color: khaki;
-    width: 300px;
-}
-#salles_capacite{
-    width: 300px;
-}
-#salles_categorie{
-    background-color: khaki;
-    width: 300px;
-}
-#salles_backline{
-    width: 300px;
-}
-#salles_description{
-    background-color: khaki;
-    width: 300px;
-}
-
 .validation{
     position: relative; 
     left: 36%;

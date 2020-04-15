@@ -1,13 +1,17 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}S'inscrire sur le site - {{ parent() }}{% endblock %}
-
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/style.formUser.css') }}" rel="stylesheet" />
+{% endblock %}
 {% block body %}
 
     <div class="container">
         {{ form_start(form) }}
             {{ form_widget(form) }}
-            <button class="btn btn-success">Ajouter ce groupe</button>
+            <button class="validation">Ajouter ce groupe</button>
 
         {{ form_end(form) }}
     </div>

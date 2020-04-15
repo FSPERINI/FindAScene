@@ -14,7 +14,8 @@ class SallesType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nom_salle')
+            
+            ->add('nom_salle', null, ['label' => "Nom de la salle"], ['attr' => ['class' => 'label_salle']])
             ->add('nom_ref')
             ->add('ville')
             ->add('adresse')
