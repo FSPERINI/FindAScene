@@ -14,9 +14,10 @@
                  <h4 id="welcome-subtitle">Trouvez le lieu de votre prochain concert! </h4>
 <!-- Search bar -->     
     <nav class="searchBar">
-    <form id="search">
+    <form id="search" action="{{ path('list_salles') }}">
         <input type="search" name="query" class="searchInput" placeholder="Nom d'une ville..." aria-label="Search">
           <button type="submit" class="searchBtn">Trouver rapidement une salle...</button>
+          <ul id="result"></ul>
     </form>
       </nav>
     <section class="section-one">

@@ -19,6 +19,17 @@ class SallesRepository extends ServiceEntityRepository
         parent::__construct($registry, Salles::class);
     }
 
+    public function search($query)
+    {
+        $qb = $this->createQueryBuilder('s')
+            ->andWhere('s.ville LIKE :query')
+            ->orWhere('s.nom_salle LIKE :query')
+            ->setParameter('query', '%'.strtolower($query).'%')
+            ->getQuery();
+
+        return $qb->getResult();
+    }
+
     // /**
     //  * @return Salles[] Returns an array of Salles objects
     //  */
