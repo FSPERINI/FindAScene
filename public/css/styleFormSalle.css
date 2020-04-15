@@ -5,53 +5,53 @@ form{
     border: 1px solid black;
     box-shadow: 1px 1px 3px black;
     padding-left: 1em;
-    margin: 2em;
+    margin: 3em;
+    padding: 3em;
     font-size: small;
 }
 .form-group{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     flex-wrap: wrap;
 }
 
 /* Inputs séparés */
-#salles_nom_salle{
-    width: 300px;
-    
+label{
+    font-weight: bold;
+    font-size: larger;
 }
-#salles_nom_ref{
+.label_salle{
     background-color: khaki;
-    width: 300px;
+    width: 150px;
 }
-#salles_ville{
-    width: 300px;
+.referent{
+    width: 150px;
 }
-#salles_adresse{
+.ville{
     background-color: khaki;
-    width: 300px;
+    width: 150px;
 }
-#salles_mail{
-    width: 300px;
+.email{
+    width: 150px;
 }
-#salles_tel{
+.telephone{
     background-color: khaki;
-    width: 300px;
+    width: 150px;
 }
-#salles_capacite{
-    width: 300px;
+.capacite{
+    width: 150px;
 }
-#salles_categorie{
+.categorie{
     background-color: khaki;
-    width: 300px;
+    width: 150px;
 }
-#salles_backline{
-    width: 300px;
+.backline{
+    width: 150px;
 }
-#salles_description{
+.description_lieu{
     background-color: khaki;
-    width: 300px;
+    width: 150px;
 }
-
 .validation{
     position: relative; 
     left: 36%;
@@ -63,6 +63,7 @@ form{
     font: 15px bold;
     font-family: 'Heebo', sans-serif;
     transition-duration: 0.4s;
+    margin: 2em;
 }
 .validation:hover{
     background-color: rgba(255, 202, 58, 0.5);

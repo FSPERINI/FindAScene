@@ -13,7 +13,40 @@ form{
     flex-direction: column;
     flex-wrap: wrap;
 }
+label{
+    font-weight: bold;
+    font-size: larger;
+}
+.username{
+    background-color: khaki;
+    width: 150px;
+}
+.password{
+    width: 150px;
+}
+.email{
+    background-color: khaki;
+    width: 150px;
+}
+.email{
+    width: 150px;
+}
+.username{
+    background-color: khaki;
+    width: 150px;
+}
+.ville{
+    width: 150px;
+}
+.description_groupe{
+    background-color: khaki;
+    width: 150px;
+}
 
+.description_groupe{
+    background-color: khaki;
+    width: 150px;
+}
 .validation{
     position: relative; 
     left: 36%;
