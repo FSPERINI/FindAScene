@@ -4,11 +4,12 @@
 
 namespace App\Controller;
 
-use App\Entity\Manager;
+use App\Entity\Musiciens;
 use App\Entity\Salles;
+use App\Form\MusiciensType;
 use App\Form\SallesType;
 use App\Repository\SallesRepository;
-use App\Repository\ManagerRepository;
+use App\Repository\MusiciensRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -21,14 +22,14 @@ class AdminController extends AbstractController
      */
     private $sallesrepository;
     /**
-     * @var ManagerRepository
+     * @var MusiciensRepository
      */
-    private $managerrepository;
+    private $musiciensrepository;
 
-    public function __construct(SallesRepository $sallesrepository, ManagerRepository $managerrepository, EntityManagerInterface $em)
+    public function __construct(SallesRepository $sallesrepository, MusiciensRepository $musiciensrepository, EntitymanagerInterface $em)
     {        
         $this->sallesrepository = $sallesrepository;
-        $this->managerrepository = $managerrepository;
+        $this->musiciensrepository = $musiciensrepository;
         $this->em = $em;
     }
 
@@ -41,8 +42,8 @@ class AdminController extends AbstractController
     public function index()
     {
        $salles = $this->sallesrepository->findAll();
-       $manager = $this->managerrepository->findAll();
-       return $this->render ("backoff/index.html.twig", compact ('salles', 'manager'));
+       $musiciens = $this->musiciensrepository->findAll();
+       return $this->render ("backoff/index.html.twig", compact ('salles', 'musiciens'));
     }
 
     /**
@@ -70,7 +71,7 @@ class AdminController extends AbstractController
      * @Route ("/admin/{id}", name="admin_delete", methods="delete")
      *  @return \Symfony\Component\HttpFoundation\Response
      */
-    public function delete(Salles $salles, Manager $manager, Request $request)
+    public function delete(Salles $salles, musiciens $musiciens, Request $request)
     {
         if ($this->isCsrfTokenValid('delete'.$salles->getId(), $request->get('_token'))) {
             $this->em->remove($salles);
