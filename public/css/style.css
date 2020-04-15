@@ -213,8 +213,6 @@ input[type=text]:focus {
 
 /******************************** ******************** ************************************************/
 footer{
-    position:absolute;
-    bottom:0;
     width: 100%;
     border: 1px solid black;
     background-color: rgba(138, 138, 138, 0.508);
