@@ -58,7 +58,7 @@ class AdminController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()){
             $this->em->flush();
             $this->addFlash('success', 'Les infos ont bien été modifiées');
-            return $this->redirectToRoute('admin.index');
+            return $this->redirectToRoute('admin_index');
         }
 
         return $this->render('backoff/edit.html.twig', [
