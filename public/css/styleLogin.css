@@ -8,7 +8,7 @@ input[type=text] {
     margin-left: 1em;
     margin-right: 1em;
     font-size: larger;
-     border-style: ridge;
+    border-style: ridge;
 }
 input[type=password]{
     background-color: rgba(255, 202, 58, 0.5);
@@ -76,6 +76,7 @@ label{
     background-color: rgba(255, 202, 58, 0.5);
 }
 .btn:active {
+    transition-duration: 0.4s;
     background-color: rgba(255, 202, 58, 1);
     box-shadow: 0 5px #666;
     transform: translateY(4px);
