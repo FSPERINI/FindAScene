@@ -10,11 +10,11 @@
     <div class="container">
         {% for salle in salles %}
         
-            <article class="card-salle">
-                        <h2 class="titre-salle">{{ salle.NomSalle}}</h2>
-                        <p class="ville-salle">{{ salle.ville}}</p>
+            <div class="card-salle">
+                        <h3 class="titre-salle">{{ salle.NomSalle}}</h3>
+                        <p class="ville-salle">"{{ salle.ville}}"</p>
                         <a href="{{ path('show_salles', {slug: salle.slug, id: salle.id} ) }}" class="white"><button class="enSavoirPLus">Voir la salle en détails</button></a>
-            </article>
+            </div>
         {% endfor %}
     </div>
 {% endblock %}

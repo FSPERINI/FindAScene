@@ -1,17 +1,22 @@
+.container{
+    display: flex;
+    flex-wrap: wrap;
+}
+body{
+    width: 100%;
+}
 .card-salle{
     background-color: rgba(255, 255, 255, 0.6);
-    border-radius: 1em;
     height: 15em;
-    margin-right: auto;
-    width: 45em;
-    margin-top: 1em;
+    width: 30em;
     border: 3px solid rgba(255, 202, 58, 0.5);
     box-shadow: 1px 0px 50px rgba(255, 202, 58, 0.5);
     text-align: center;
 }
 .enSavoirPLus{
     position: relative; 
-    left: 36%;
+    background-color: rgba(255, 202, 58, 1); ;
+    left: 25%;
     height: 50px;
     width: 150px;
     border: 2px solid  rgba(255, 202, 58, 0.5);
@@ -22,8 +27,7 @@
     transition-duration: 0.4s;
 }
 .enSavoirPLus:hover {
-    background-color: rgba(22, 19, 10, 0.5);
-    color: white;
+    color: black;
 
 }
 .enSavoirPLus:active {
@@ -35,8 +39,8 @@
     margin-top: none;
 }
 .ville-salle{
-    text-align: start;
-    margin-top: 1em;
+    
+    
 }
 .white{
     color: white;
