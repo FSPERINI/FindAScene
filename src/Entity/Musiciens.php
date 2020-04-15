@@ -10,7 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\MusiciensRepository")
  */
-class Musiciens implements UserInterface,\Serializable
+class Musiciens implements UserInterface
 {
     /**
      * @ORM\Id()
@@ -222,37 +222,12 @@ class Musiciens implements UserInterface,\Serializable
     {
         
     }
-    
-    public function serialize()
-    {
-        return serialize([
-            $this->id,
-            $this->name,
-            $this->password,
-            $this->isActive,
-        ]);
-    }
 
-    public function unserialize($serialized)
-    {
-        list (
-            $this->id,
-            $this->name,
-            $this->password,
-            $this->isActive,
-        ) = unserialize($serialized, ['allowed_classes' => false]);
-    }
     public function getUsername(): ?string
     {
-        return $this->username;
+        return $this->mail;
     }
 
-    public function setUsername(string $username): self
-    {
-        $this->username = $username;
-
-        return $this;
-    }
     function getIsActive() 
     {
         return $this->isActive;

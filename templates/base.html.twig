@@ -1,98 +1,88 @@
 <!DOCTYPE html>
 <html>
+    <head>
+        <meta charset="UTF-8">
 
-<head>
-    <meta charset="UTF-8">
+        <title>{% block title %}FindAScene{% endblock %}</title>
+        <meta name="description" content="Trouver une scène pour les musiciens, trouver un groupe pour les bars et salles de concerts !">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>{% block title %}FindAScene{% endblock %}</title>
-    <meta name="description" content="Trouver une scène pour les musiciens, trouver un groupe pour les bars et salles de concerts !">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="/public/leaflet/leaflet.css">
-    <!-- LIEN FONT AWESOME-->
-    <script src="https://kit.fontawesome.com/64018adab9.js" crossorigin="anonymous"></script>
-
-    <!-- LIENS GOOGLE FONT -->
-    <link href="https://fonts.googleapis.com/css?family=Dancing+Script|Pacifico|Shadows+Into+Light|Bitter|Rancho|Spicy+Rice|Roboto&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Heebo|Knewave|Noto+Sans+KR|Rock+Salt|Slabo+27px|Crete+Round&display=swap" rel="stylesheet">          
-    {% block stylesheets %}
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet" />
+        {% block stylesheets %}
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+            <link rel="stylesheet" href="/public/leaflet/leaflet.css">
+            <!-- LIENS GOOGLE FONT -->
+            <link href="https://fonts.googleapis.com/css?family=Dancing+Script|Pacifico|Shadows+Into+Light|Bitter|Spicy+Rice|Roboto&display=swap" rel="stylesheet">
+            <link href="https://fonts.googleapis.com/css?family=Heebo|Knewave|Noto+Sans+KR|Rock+Salt|Slabo+27px|Crete+Round&display=swap" rel="stylesheet">
+            <link href="{{ asset('css/style.css') }}" rel="stylesheet" />
         {% endblock %}
-</head>
-{% block header %}
-<header>
-    <!-- Boostrap nav-->
-    <a href="{{ path('home')}}"><h1 id="mainNav"><i class="fas fa-music"></i> FindAScene <i class="fas fa-music"></i></h1></a>
-                <nav>
-                    <ul id="headerUl">
+    </head>
 
-                        <li class="mainPageButton" > <a href="{{ path ('new_salles') }}">Ajouter une salle</a></li>
-                        <li class="mainPageButton" > <a href="{{ path ('list_salles') }}">Toutes les salles</a></li>
-                        <li class="mainPageButton" > <a href="{{ path ('new_musiciens') }}">Inscrivez-vous !</a></li>
-                        <li class="mainPageButton" > <a href="{{ path ('login') }}">Connexion</a></li>
-                        {% if app.user %}
+    {% block header %}
+        <header>
+            <!-- Boostrap nav-->
+            <a href="{{ path('home')}}"><h1 id="mainNav"><i class="fas fa-music"></i> FindAScene <i class="fas fa-music"></i></h1></a>
+            <nav>
+                <ul id="headerUl">
+                    <li class="mainPageButton" > <a href="{{ path ('new_salles') }}">Ajouter une salle</a></li>
+                    <li class="mainPageButton" > <a href="{{ path ('list_salles') }}">Toutes les salles</a></li>
+                    {% if app.user %}
                         <li class="mainPageButton" > <a href="{{ path ('home_musiciens') }}">Mon Profil</a></li>
                         <li class="mainPageButton" > <a href="{{ path ('logout') }}">Se Déconnecter</a></li>
-                        {% endif %}
-                    </ul>
-                </nav>
-</header>
-  </nav>
-   {% endblock %} 
+                    {% else %}
+                        <li class="mainPageButton" > <a href="{{ path ('new_musiciens') }}">Inscrivez-vous !</a></li>
+                        <li class="mainPageButton" > <a href="{{ path ('login') }}">Connexion</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </header>
+    {% endblock %} 
 
-
-    {% block body %}
     <body>
-    <form id="search">
-        <input type="search" name="query">
-    </form>
+        {% block body %}{% endblock %}
 
-    <div id="map">
-        <ul style="list-style-type: decimal;" id="result">
-            <!--Ici intégrer la map-->
-        </ul>
-    </div>
+        {% block footer %}
+            <footer>
+                <nav class="footerNav">
+                    <ul class="footerList">
+                        <li> <strong>A propos</strong> </li>
+                        <li> <a href="#">Conditions générales du site</a></li>
+                        <li> <a href="#">Qui-sommes nous ?</a> </li>
+                        <li> <a href="#">Map du site</a></li>
+                        <li> <a href="#">Web Force 3</a></li>
+                </ul>
+                    <ul class="footerList">
+                        <li> <strong>Contacts</strong> </li>
+                        <li> <a href="#">Nous contacter</a></li>
+                        <li> <a href="#">FAQ</a> </li>
+                        <li> <a href="#">Réclamations </a></li>
+                        <li> <a href="#">Liens externes</a></li>
+                </ul>
+                </nav>
+                <div clas="icones">
+                    <i class="fab fa-twitter-square"></i>
+                    <i class="fab fa-facebook-f"></i>
+                    <i class="fab fa-google-plus-g"></i>
+                </div>
 
-    {% block javascripts %}
+                    <div class="copyright">
+                    <strong>  &copy 2020 all rights reserved </strong>
+                    <p> Créé par Ousmane, Denis, Fabio et Maxime.</p>
+                </div>
+            </footer>
+        {% endblock %}
 
-        <!-- SCRIPT API MAP LEAFLET -->
-        <script src="/public/js/script.js"></script>
-        <script src="/public/leaflet/leaflet.js"></script>
-        <!-- SCRIPTS BOOTSTRAP -->
-        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    {% endblock %}
-</body>
-    {% endblock %}
-{% block footer %}
-<footer>
-<nav class="footerNav">
-    <ul class="footerList">
-        <li> <strong>A propos</strong> </li>
-        <li> <a href="#">Conditions générales du site</a></li>
-        <li> <a href="#">Qui-sommes nous ?</a> </li>
-        <li> <a href="#">Map du site</a></li>
-        <li> <a href="#">Web Force 3</a></li>
-   </ul>
-       <ul class="footerList">
-        <li> <strong>Contacts</strong> </li>
-        <li> <a href="#">Nous contacter</a></li>
-        <li> <a href="#">FAQ</a> </li>
-        <li> <a href="#">Réclamations </a></li>
-        <li> <a href="#">Liens externes</a></li>
-   </ul>
-</nav>
-    <div clas="icones">
-        <i class="fab fa-twitter-square"></i>
-        <i class="fab fa-facebook-f"></i>
-        <i class="fab fa-google-plus-g"></i>
-    </div>
-
-        <div class="copyright">
-        <strong>  &copy 2020 all rights reserved </strong>
-        <p> Créé par Ousmane, Denis, Fabio et Maxime.</p>
-    </div>
-</footer>
+        {% block javascripts %}
+            <!-- LIEN FONT AWESOME-->
+            <script src="https://kit.fontawesome.com/64018adab9.js" crossorigin="anonymous"></script>
+            <!-- SCRIPT API MAP LEAFLET -->
+            <script src="/public/js/script.js"></script>
+            <script src="/public/leaflet/leaflet.js"></script>
+            <!-- SCRIPTS BOOTSTRAP -->
+            <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+                integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+            </script>
+        {% endblock %}
+    </body>
 </html>
-{% endblock %}
