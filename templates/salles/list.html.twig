@@ -1,21 +1,20 @@
 {% extends 'base.html.twig' %}
 
 {% block title 'Toutes les salles' %}
-
+{% block stylesheets %}
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/styleSalles.css') }}" rel="stylesheet" />
+{% endblock %}
 {% block body %}
     <div class="container">
         {% for salle in salles %}
         
-            <div class="col-lg-3">
-                <div class="card shadow">
-                    <div class="card-body">
-                        <h2>{{ salle.NomSalle}}</h2>
-                        <p>{{ salle.ville}}</p>
+<article class="card-salle">
+                        <h2 class="titre-salle">{{ salle.NomSalle}}</h2>
+                        <p class="ville-salle">{{ salle.ville}}</p>
                         <p></p>
-                        <a href="{{ path('show_salles', {slug: salle.slug, id: salle.id} ) }}" class="card-title">Voir la salle en détails</a>
-                    </div>
-                </div>
-            </div>
+                        <button class="enSavoirPLus"><a href="{{ path('show_salles', {slug: salle.slug, id: salle.id} ) }}">Voir la salle en détails</a></button>
+</article>
         {% endfor %}
     </div>
 {% endblock %}
