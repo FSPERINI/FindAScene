@@ -20,7 +20,7 @@ class SallesFixture extends Fixture
             ->setNomRef($faker->firstName)
             ->setVille($faker->city)
             ->setPassword('demo')
-            ->setAdresse($faker->address)
+            ->setAdresse($faker->streetAddress)
             ->setMail($faker->freeEmail)
             ->setTel($faker->numberBetween(1,900))
             ->setCapacite($faker->numberBetween(1000,9000))

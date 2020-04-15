@@ -19,20 +19,38 @@
 
     {% block header %}
         <header>
-            <!-- Boostrap nav-->
-            <a href="{{ path('home')}}"><h1 id="mainNav"><i class="fas fa-music"></i> FindAScene <i class="fas fa-music"></i></h1></a>
-            <nav>
-                <ul id="headerUl">
-                    <li class="mainPageButton" > <a href="{{ path ('new_salles') }}">Ajouter une salle</a></li>
-                    <li class="mainPageButton" > <a href="{{ path ('list_salles') }}">Toutes les salles</a></li>
-                    {% if app.user %}
-                        <li class="mainPageButton" > <a href="{{ path ('home_musiciens') }}">Mon Profil</a></li>
-                        <li class="mainPageButton" > <a href="{{ path ('logout') }}">Se Déconnecter</a></li>
-                    {% else %}
-                        <li class="mainPageButton" > <a href="{{ path ('new_musiciens') }}">Inscrivez-vous !</a></li>
-                        <li class="mainPageButton" > <a href="{{ path ('login') }}">Connexion</a></li>
-                    {% endif %}
-                </ul>
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <a id="mainNav" class="navbar-brand" href="{{ path('home')}}">
+                    <h1><i class="fas fa-music"></i> FindAScene <i class="fas fa-music"></i></h1>
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav ml-auto" id="headerUl">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="{{ path('new_salles') }}">Ajouter une salle</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('list_salles') }}">Toutes les salles</a>
+                        </li>
+                        {% if app.user %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('home_musiciens') }}">Mon profil</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('logout') }}">Se déconnecter</a>
+                            </li>
+                        {% else %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('new_musiciens') }}">Inscrivez-vous !</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('login') }}">Connexion</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
             </nav>
         </header>
     {% endblock %} 

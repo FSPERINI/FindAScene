@@ -1,11 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Profil {{musicien.username}} - {{ parent() }}{% endblock %}
+{% block title %}Profil {{user.username}} - {{ parent() }}{% endblock %}
 
 {% block body %}
 
-    <div class="container">
-        Votre profil {{musicien.username}}
-       @Todo mettre en page 
+    <div class="container my-5">
+        <div class="card shadow p-4">
+            <h1>Bonjour {{user.username}}</h1>
+
+            <a href="{{ path('profil_musiciens') }}">Modifier mon profil</a>
+        </div>
     </div>
 {% endblock %}
