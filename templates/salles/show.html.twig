@@ -1,26 +1,39 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Details de la salle {{salle.nomSalle}} - {{ parent() }}{% endblock %}
-
+{% block stylesheets %}
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/styleShowSalles.css') }}" rel="stylesheet" />
+{% endblock %}
 {% block body %}
 
-<div class="jumbotron text-center" style="background-color:rgba(201, 212, 170, 0.788);">
-    <h1>{{ salle.NomSalle }}</h1>
-</div>
-<div class="container mt-4 text-center">
-    <div class="row">
-     <div class="col md-8">
-
-     </div>
-     <div class="col mt-4">
-        <h2>Adresse :{{ salle.Adresse}}  - Ville : {{ salle.Ville }} </h2>
-        <div class="text-primary" style="font-size:4rem;font-weight:bold;">{{ salle.Capacite}}</div>
-        <a href="#" class="btn btn-primary">Contacter la salle</a>
-     </div>   
-    </div>
-    <p>
-        {{ salle.description | nl2br }}
-    </p>
-    
+<div class="show-salle">
+    <h1 class="titre-salle">{{ salle.NomSalle }}</h1>
+        <div class="alignement">
+            <div class="carac">
+                        <p>
+                        <span class="decoration">Adresse</span> : 
+                            <br>
+                        <span class="mise-en-avant">{{ salle.Adresse}}</span> 
+                        </p>
+                            
+                        <p> <span class="decoration">Ville</span> : 
+                            <br>
+                        <span class="mise-en-avant">{{ salle.Ville }} </span> 
+                        </p>
+                        <p class="capacité"><span class="decoration">Capacité d'accueil</span> : 
+                            <br>
+                        <span class="mise-en-avant nombre">{{ salle.Capacite}} </span> personnes.</p>   
+            </div>
+        
+            <div class="resume">
+                <p> <span class="decoration">à propos de la salle</span> : </p>
+                <p class="details-salle">{{ salle.description | nl2br }}</p>
+            </div> 
+        </div>
+    <div class="alignement">
+        <div class="centre"><a href="#"><button class="contact">Fiche technique</button></a></div> 
+        <div class="centre"><a href="#"><button class="contact">Contacter la salle</button></a></div>
+    </div>          
 </div>
 {% endblock %}

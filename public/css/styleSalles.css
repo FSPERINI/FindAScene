@@ -1,0 +1,43 @@
+.card-salle{
+    background-color: rgba(255, 255, 255, 0.6);
+    border-radius: 1em;
+    height: 15em;
+    margin-right: auto;
+    width: 45em;
+    margin-top: 1em;
+    border: 3px solid rgba(255, 202, 58, 0.5);
+    box-shadow: 1px 0px 50px rgba(255, 202, 58, 0.5);
+    text-align: center;
+}
+.enSavoirPLus{
+    position: relative; 
+    left: 36%;
+    height: 50px;
+    width: 150px;
+    border: 2px solid  rgba(255, 202, 58, 0.5);
+    border-radius: 5%;
+    font-size: larger;
+    font: 15px bold;
+    font-family: 'Heebo', sans-serif;
+    transition-duration: 0.4s;
+}
+.enSavoirPLus:hover {
+    background-color: rgba(22, 19, 10, 0.5);
+    color: white;
+
+}
+.enSavoirPLus:active {
+    background-color: rgba(255, 202, 58, 1);
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+.titre-salle{
+    margin-top: none;
+}
+.ville-salle{
+    text-align: start;
+    margin-top: 1em;
+}
+.white{
+    color: white;
+}
