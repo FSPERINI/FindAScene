@@ -49,14 +49,14 @@
             </tr>
         </thead>
         <tbody>
-            {% for managerz in manager %}
+            {% for musicien in musiciens %}
             <tr>
-                <td>{{ managerz.name }}</td>
+                <td>{{ musicien.name }}</td>
                 <td>
-                    <a href="{{ path ('admin_edit', {id: managerz.id}) }}" class="btn btn-secondary">Editer</a>
-                    <form method="post" action="{{ path ('admin_delete', {id: managerz.id}) }}" style="display: inline-block" onsubmit="return confirm('Action irrémédiable')">
+                    <a href="{{ path ('admin_edit', {id: musicien.id}) }}" class="btn btn-secondary">Editer</a>
+                    <form method="post" action="{{ path ('admin_delete', {id: musicien.id}) }}" style="display: inline-block" onsubmit="return confirm('Action irrémédiable')">
                         <input type="hidden" name="_method" value="delete">
-                        <input type="hidden" name="_token" value="{{csrf_token('delete' ~ managerz.id)}}">
+                        <input type="hidden" name="_token" value="{{csrf_token('delete' ~ musicien.id)}}">
                         <button class="btn btn-danger">Supprimer</button>
                     </form>
                 </td>

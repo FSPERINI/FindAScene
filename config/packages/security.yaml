@@ -12,7 +12,7 @@ security:
     
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
-        app_user_provider:
+        from_database:
             entity:
                 class: App\Entity\Musiciens
                 property: name
@@ -29,8 +29,9 @@ security:
             logout: 
                 path: /logout
                 target: /
-            provider: app_user_provider
-               
+            provider: from_database
+            
+            
     
 
             # activate different ways to authenticate
