@@ -42,25 +42,3 @@ function proccess( response ){
         list.appendChild( li );
     }
 }
-
-
-var map = L.map('map').setView([48.85, 2.34], 13);
-
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-}).addTo(map);
-
-var cleApi = 'd74b4d980c75e01effb74117dece1e33afba94c2'
-var url = 'https://api.jcdecaux.com/vls/v1/stations?contract=creteil&apiKey=' + cleApi
-
-$.get(url)
-.done(function(data) {
-    //console.log(listeStation);
-    data.forEach(station => {   //fonction flechée équivau à function (station) {}
-        L.marker([station.position.lat, station.position.lng]).addTo(map)
-        .bindPopup(station.name)
-    });
-})
-.fail(function() {
-    alert( "error : le serveur ne répond pas" );
-})

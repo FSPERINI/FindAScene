@@ -40,3 +40,28 @@
 
 <div id="map"></div>
 {% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script>
+        var cleApi = 'd74b4d980c75e01effb74117dece1e33afba94c2'
+        var url = 'https://api-adresse.data.gouv.fr/search/?q={{ salle.Adresse ~ ' ' ~ salle.Ville }}&limit=10';
+
+        $.get(url)
+        .done(function(data) {
+            var map = L.map('map').setView([data.features[0].geometry.coordinates[1], data.features[0].geometry.coordinates[0]], 12);
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+
+            //console.log(listeStation);
+            L.marker([data.features[0].geometry.coordinates[1], data.features[0].geometry.coordinates[0]]).addTo(map)
+                .bindPopup(data.features[0].properties.label);
+        })
+        .fail(function() {
+            console.log( "error : le serveur ne répond pas" );
+        })
+    </script>
+{% endblock %}
