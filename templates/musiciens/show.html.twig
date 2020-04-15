@@ -5,10 +5,16 @@
 {% block body %}
 
     <div class="container my-5">
-        <div class="card shadow p-4">
+        <div class="card shadow p-4 mb-4">
             <h1>Bonjour {{user.username}}</h1>
 
-            <a href="{{ path('profil_musiciens') }}">Modifier mon profil</a>
+            <a href="{{ path('profil_musiciens') }}" class="btn btn-primary">Modifier mon profil</a>
+        </div>
+
+        <div class="card shadow p-4">
+            <h1>Vos favoris</h1>
+
+
         </div>
     </div>
 {% endblock %}
