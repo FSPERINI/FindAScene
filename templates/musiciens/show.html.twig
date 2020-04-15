@@ -1,10 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Details de la salle {{musiciens.slug}} - {{ parent() }}{% endblock %}
+{% block title %}Profil {{musicien.username}} - {{ parent() }}{% endblock %}
 
 {% block body %}
 
     <div class="container">
+        Votre profil {{musicien.username}}
        @Todo mettre en page 
     </div>
 {% endblock %}

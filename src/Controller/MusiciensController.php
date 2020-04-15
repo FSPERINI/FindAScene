@@ -21,8 +21,9 @@ class MusiciensController extends AbstractController
      */
     public function index()
     {
-        return $this->render('musiciens/index.html.twig'   
-        );
+        return $this->render('musiciens/show.html.twig', [
+            'musicien' => $this->getUser(),
+        ]);
     }
 
 
