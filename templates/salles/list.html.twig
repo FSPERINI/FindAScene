@@ -17,6 +17,10 @@
                         <a href="{{ path('show_salles', {slug: salle.slug, id: salle.id} ) }}" class="white"><button class="enSavoirPLus">Voir la salle en détails</button></a>
                     </article>
                 </div>
+            {% else %}
+                <div class="my-5">
+                    Pas de salles pour la recherche.
+                </div>
             {% endfor %}
         </div>
     </div>
