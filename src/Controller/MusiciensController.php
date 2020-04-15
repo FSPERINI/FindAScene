@@ -58,7 +58,7 @@ class MusiciensController extends AbstractController
     }
     
     /**
-     * @Route("/musiciens/profil/edit{id}", name="edit_musiciens", methods="GET|POST")
+     * @Route("/musiciens/profil/edit/{id}", name="edit_musiciens", methods="GET|POST")
      * @param Musiciens $musiciens
      */
     public function edit(musiciens $musiciens, Request $request)
