@@ -2,6 +2,7 @@
 
 {% block title %}Details de la salle {{salle.nomSalle}} - {{ parent() }}{% endblock %}
 {% block stylesheets %}
+    {{ parent() }}
     <link href="{{ asset('css/style.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/styleShowSalles.css') }}" rel="stylesheet" />
 {% endblock %}
