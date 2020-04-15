@@ -4,13 +4,13 @@ namespace App\Entity;
 
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
-
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\MusiciensRepository")
  */
-class Musiciens
+class Musiciens implements UserInterface,\Serializable
 {
     /**
      * @ORM\Id()
@@ -20,113 +20,85 @@ class Musiciens
     private $id;
 
     /**
-     * @ORM\Column(type="string")
-     * * @Assert\Length(
-     *      min = 1,
-     *      max = 25,
-     *      minMessage = "Le nom de votre groupe doit comporter au moins {{ limit }} lettre",
-     *      maxMessage = "Le nom de votre groupe doit comporter au maximum {{ limit }} lettres",
-     *      
+     * @ORM\Column(type="string", length=64)
+     * @Assert\Length(min = 3,      
+     *      minMessage = "Le nom d'utilisateur doit comporter au moins {{ limit }} lettres"
      * )
      */
-    private $nom_grp;
+    private $name;
 
     /**
-     * @ORM\Column(type="string")
-     * * @Assert\Length(
-     *      min = 1,
-     *      max = 50,
-     *      minMessage = "Votre mail doit comporter au moins {{ limit }} lettre",
-     *      maxMessage = "Votre mail doit comporter au maximum {{ limit }} lettres",
-     *      
+     * @ORM\Column(type="string", length=255)
+     */
+    private $password;
+
+    /**
+     * @ORM\Column(type="string", length=64)
+     *  @Assert\Length(
+     *      min = 10,
+     *      minMessage = "Votre mail doit comporter au moins {{ limit }} lettre"
      * )
      */
     private $mail;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=128, nullable=true)
      * @Assert\Length(
-     *      min = 1,
-     *      max = 15,
-     *      minMessage = "Votre nom doit comporter au moins {{ limit }} lettre",
-     *      maxMessage = "Votre nom doit comporter au maximum {{ limit }} lettres",
-     *      
+     *      min = 3,
+     *      minMessage = "Le nom de votre groupe doit comporter au moins {{ limit }} lettre"
      * )
+     *     
      */
-    private $nom_ref;
+    private $groupe;
 
     /**
-     * @ORM\Column(type="string")
-     * @Assert\Length(
-     *      min = 1,
-     *      max = 15,
-     *      minMessage = "Votre prénom doit comporter au moins {{ limit }} lettre",
-     *      maxMessage = "Votre prénom doit comporter au maximum {{ limit }} lettres",
-     *      
-     * )
+     * @ORM\Column(type="string", length=64)
      */
-    private $prenom_ref;
+    private $city;
 
     /**
-     * @ORM\Column(type="integer")
-     * @Assert\Length(
-     *      min = 10,
-     *      max = 10,
-     *      minMessage = "Votre n° doit comporter 10 numéro",
-     *      maxMessage = "Votre n° doit comporter 10 numéro"
-     * )
-     */
-    private $tel;
-
-    /**
-     * @ORM\Column(type="integer")
-     * 
-     * @Assert\Range(
-     *      min = 1,
-     *      max = 12
-     *)
-     */
-    private $nb_membres;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $style;
-
-    /**
-     * @ORM\Column(type="text")
-     * 
-     * @Assert\Length(
+     * @ORM\Column(type="text", nullable=true)
+     *  @Assert\Length(
      *      min = 50,
-     *      max = 150,
-     *      minMessage = "Votre description doit comporter au moins {{ limit }} caractères",
-     *      maxMessage = "Votre description ne doit pas dépasser {{ limit }} caractères"
-     *)
+     *      minMessage = "Votre description doit comporter au moins {{ limit }} caractères"
+     * )
      */
-    private $presentation_grp;
+    private $description;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $picture;
+    
     /**
      * @ORM\Column(type="string", length=255)
      */
     private $slug;
     
     /**
-     * @ORM\Column(type="json")
+     * @var array
+     * @ORM\Column(name="roles", type="json")
      */
-    private $roles = [];
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $Manager;
-
-    public function getRoles(): array
-    {
-        $roles = $this->roles;
-        $roles[] = 'ROLE_MUSICIENS';
-        return array_unique($roles);
+    private $roles = array();
         
+    /**
+     * @ORM\Column(name="is_active", type="boolean")
+     */
+    private $isActive;
+
+    public function __construct() 
+    {
+        $this->isActive = true;
     }
+
+    public function getRoles() 
+    {
+        // if (empty($this->roles)) {
+            return ['ROLE_MUSICIENS'];
+        // }
+        // return $this->roles;
+    }
+
     public function setRoles(array $roles): self
     {
         $this->roles = $roles;
@@ -134,23 +106,40 @@ class Musiciens
         return $this;
     }
 
+    function addRole($role) 
+    {
+        $this->roles[] = $role;
+    }
+
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getNomGrp(): ?string
+    public function getName(): ?string
     {
-        return $this->nom_grp;
+        return $this->name;
     }
 
-    public function setNomGrp(string $nom_grp): self
+    public function setName(string $name): self
     {
-        $this->nom_grp = $nom_grp;
+        $this->name = $name;
 
         return $this;
     }
-    
+
+    public function getPassword(): ?string
+    {
+        return $this->password;
+    }
+
+    public function setPassword(string $password): self
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
     public function getMail(): ?string
     {
         return $this->mail;
@@ -163,78 +152,53 @@ class Musiciens
         return $this;
     }
 
-    public function getNomRef(): ?string
+    public function getGroupe(): ?string
     {
-        return $this->nom_ref;
+        return $this->groupe;
     }
 
-    public function setNomRef(string $nom_ref): self
+    public function setGroupe(?string $groupe): self
     {
-        $this->nom_ref = $nom_ref;
+        $this->groupe = $groupe;
 
         return $this;
     }
 
-    public function getPrenomRef(): ?string
+    public function getCity(): ?string
     {
-        return $this->prenom_ref;
+        return $this->city;
     }
 
-    public function setPrenomRef(string $prenom_ref): self
+    public function setCity(string $city): self
     {
-        $this->prenom_ref = $prenom_ref;
+        $this->city = $city;
 
         return $this;
     }
 
-    public function getTel(): ?int
+    public function getDescription(): ?string
     {
-        return $this->tel;
+        return $this->description;
     }
 
-    public function setTel(int $tel): self
+    public function setDescription(?string $description): self
     {
-        $this->tel = $tel;
+        $this->description = $description;
 
         return $this;
     }
 
-    public function getNbMembres(): ?int
+    public function getPicture(): ?string
     {
-        return $this->nb_membres;
+        return $this->picture;
     }
 
-    public function setNbMembres(int $nb_membres): self
+    public function setPicture(?string $picture): self
     {
-        $this->nb_membres = $nb_membres;
+        $this->picture = $picture;
 
         return $this;
     }
-
-    public function getStyle(): ?string
-    {
-        return $this->style;
-    }
-
-    public function setStyle(string $style): self
-    {
-        $this->style = $style;
-
-        return $this;
-    }
-
-    public function getPresentationGrp(): ?string
-    {
-        return $this->presentation_grp;
-    }
-
-    public function setPresentationGrp(string $presentation_grp): self
-    {
-        $this->presentation_grp = $presentation_grp;
-
-        return $this;
-    }
-
     public function getSlug(): ?string
     {
         return $this->slug;
@@ -246,16 +210,57 @@ class Musiciens
 
         return $this;
     }
-
-    public function getManager(): ?string
+    /**
+     * @return string|null
+     */
+    public function getSalt()
     {
-        return $this->Manager;
+        return null;
+    }
+    
+    public function eraseCredentials()
+    {
+        
+    }
+    
+    public function serialize()
+    {
+        return serialize([
+            $this->id,
+            $this->name,
+            $this->password,
+            $this->isActive,
+        ]);
     }
 
-    public function setManager(string $Manager): self
+    public function unserialize($serialized)
     {
-        $this->Manager = $Manager;
+        list (
+            $this->id,
+            $this->name,
+            $this->password,
+            $this->isActive,
+        ) = unserialize($serialized, ['allowed_classes' => false]);
+    }
+    public function getUsername(): ?string
+    {
+        return $this->username;
+    }
+
+    public function setUsername(string $username): self
+    {
+        $this->username = $username;
 
         return $this;
     }
+    function getIsActive() 
+    {
+        return $this->isActive;
+    }
+
+    function setIsActive($isActive) 
+    {
+        $this->isActive = $isActive;
+    }
+    
 }
