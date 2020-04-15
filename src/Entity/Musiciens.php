@@ -93,10 +93,10 @@ class Musiciens implements UserInterface,\Serializable
 
     public function getRoles() 
     {
-        if (empty($this->roles)) {
+        // if (empty($this->roles)) {
             return ['ROLE_MUSICIENS'];
-        }
-        return $this->roles;
+        // }
+        // return $this->roles;
     }
 
     public function setRoles(array $roles): self
