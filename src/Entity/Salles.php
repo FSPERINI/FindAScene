@@ -2,11 +2,17 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\SallesRepository")
+ * @Vich\Uploadable()
+ * 
  */
 class Salles
 {
@@ -16,6 +22,20 @@ class Salles
      * @ORM\Column(type="integer")
      */
     private $id;
+
+    /** 
+     * @ORM\Column (type="string", length=64, nullable=true)
+     * 
+     * 
+     */
+    private $filename;
+
+    /**
+     * @var File|null
+     * @Assert\Image(mimeTypes="image/jpeg")
+     * @Vich\UploadableField(mapping="salle_image", fileNameProperty="filename")
+     */
+    private $imagefile;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -93,6 +113,17 @@ class Salles
     private $slug;
 
     
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $updated_at;
+
+    public function __construct()
+    {
+        $this->created_at = new \DateTime();
+        $this->options = new ArrayCollection();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -272,6 +303,59 @@ class Salles
     public function setPassword(string $password): self
     {
         $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getFilename(): ?string
+    {
+        return $this->filename;
+    }
+
+    /**
+     * @param null|string $filename
+     * @return Property
+     */
+    public function setFilename(string $filename): self
+    {
+        $this->filename = $filename;
+
+        return $this;
+    }
+    
+    /**
+     * @return null|File
+     */
+    public function getImageFile(): ?File
+    {
+        return $this->imagefile;
+    }
+
+    /**
+     * @param null|File $imageFile
+     * @return Property
+     */
+    public function setImageFile(?File $imagefile): Salles
+    {
+        $this->imagefile = $imagefile;
+
+        if ($this->imagefile instanceof UploadedFile) {
+            $this->updated_at = new \DateTime('now');
+        }
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updated_at;
+    }
+
+    public function setUpdatedAt(\DateTimeInterface $updated_at): self
+    {
+        $this->updated_at = $updated_at;
 
         return $this;
     }

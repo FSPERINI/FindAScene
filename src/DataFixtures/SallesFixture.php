@@ -27,6 +27,7 @@ class SallesFixture extends Fixture
             ->setCategorie($faker->word)
             ->setBackline($faker->word)
             ->setSlug($faker->word)
+            ->setFilename('')
             ->setDescription($faker->sentences( 10 , true))
             ;
             $manager->persist($salle);
