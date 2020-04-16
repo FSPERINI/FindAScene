@@ -14,33 +14,32 @@
             <div class="show-salle">
                 <h1 class="titre-salle">{{ salle.NomSalle }}</h1>
                     <div class="alignement">
-                        <div class="col-md-8">
-                            {% if salle.filename %}
-                              <img src="{{ vich_uploader_asset(salle, 'imageFile') | imagine_filter('medium') }}" alt="card-img-top" style="width: 100%; height:auto;">
-                            {% else %}
-                              <img src="{{ '/images/salles/empty.jpg' | imagine_filter('medium') }}" alt="card-img-top" style="width: 100%; height:auto;">
-                            {% endif %}
-                          </div>
                         <div class="carac">
-                                    <p>
-                                    <span class="decoration">Adresse</span> : 
-                                        <br>
-                                    <span class="mise-en-avant">{{ salle.Adresse}}</span> 
+                                <p>
+                                <span class="decoration">Adresse</span> : 
+                                    <br>
+                                <span class="mise-en-avant">{{ salle.Adresse}}</span> 
                                     </p>
                                         
-                                    <p> <span class="decoration">Ville</span> : 
-                                        <br>
-                                    <span class="mise-en-avant">{{ salle.Ville }} </span> 
+                                <p> <span class="decoration">Ville</span> : 
+                                    <br>
+                                <span class="mise-en-avant">{{ salle.Ville }} </span> 
                                     </p>
-                                    <p class="capacité"><span class="decoration">Capacité d'accueil</span> : 
-                                        <br>
-                                    <span class="mise-en-avant nombre">{{ salle.Capacite}} </span> personnes.</p>   
+                                <p class="capacité"><span class="decoration">Capacité d'accueil</span> : 
+                                    <br>
+                                <span class="mise-en-avant nombre">{{ salle.Capacite}} </span> personnes.</p>   
                         </div>
-                    
+                        
                         <div class="resume">
                             <p> <span class="decoration">à propos de la salle</span> : </p>
                             <p class="details-salle">{{ salle.description | nl2br }}</p>
-                        </div> 
+                        </div>                        
+                            {% if salle.filename %}
+                              <img src="{{ vich_uploader_asset(salle, 'imagefile') | imagine_filter('medium') }}" alt="card-img-top" style="width: 100%; height:auto;">
+                            {% else %}
+                              <img src="{{ '/images/salles/empty.jpg' | imagine_filter('medium') }}" alt="card-img-top" style="width: 100%; height:auto;">
+                            {% endif %}
+                          </div> 
                     </div>
                 <div class="alignement">
                     <div class="centre"><a href="#"><button class="contact">Ajouter en favori</button></a></div> 
