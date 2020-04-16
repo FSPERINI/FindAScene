@@ -11,11 +11,16 @@
         <div class="row">
             {% for salle in salles %}
                 <div class="col-lg-4">
-                    <article class="card-salle">
-                        <h2 class="titre-salle">{{ salle.NomSalle}}</h2>
-                        <p class="ville-salle text-center">A {{ salle.ville}}</p>
-                        <a href="{{ path('show_salles', {slug: salle.slug, id: salle.id} ) }}" class="white"><button class="enSavoirPLus">Voir la salle en détails</button></a>
-                    </article>
+                    {% if salle.filename %}
+                        <img src="/images/salles/{{ salle.filename }}" alt="card-img-top">
+                    {% else %}
+                        <img src="{{ '/images/properties/empty.jpg' | imagine_filter('thumb') }}" alt="card-img-top" style="width: 100%; height:auto;">
+                    {% endif %}
+                        <article class="card-salle">
+                            <h2 class="titre-salle">{{ salle.NomSalle}}</h2>
+                            <p class="ville-salle text-center">A {{ salle.ville}}</p>
+                            <a href="{{ path('show_salles', {slug: salle.slug, id: salle.id} ) }}" class="white"><button class="enSavoirPLus">Voir la salle en détails</button></a>
+                        </article>
                 </div>
             {% else %}
                 <div class="my-5">

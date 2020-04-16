@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Salles;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -24,6 +25,9 @@ class SallesType extends AbstractType
             ->add('categorie')
             ->add('backline')
             ->add('description')
+            ->add('imageFile', FileType::class,[
+                'required'=>false
+            ])
         ;
     }
 
